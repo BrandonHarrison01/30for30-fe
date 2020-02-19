@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route } from 'react-router-dom'
 import './App.css';
 
 import Login from './components/Login'
@@ -8,8 +9,8 @@ function App() {
   return (
     <div className="App">
       <h1>30for30 Front End</h1>
-      <Login />
-      <Register />
+      <Route path='/login' component={Login} />
+      <Route path='/register' component={Register} />
     </div>
   );
 }

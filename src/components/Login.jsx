@@ -12,7 +12,10 @@ class Login extends React.Component {
             console.log(this.state, 'inputs')
             axios
                 .post('https://thirty-before-thirty-bw.herokuapp.com/auth/login', this.state)
-                .then(res => console.log(res, 'results'))
+                .then(res => {
+                  console.log(res, 'results')
+                  localStorage.setItem('token', res.data.token)
+                })
                 .catch(err => console.log(err))
         }
         
