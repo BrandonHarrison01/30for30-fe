@@ -1,10 +1,11 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import "./App.css";
 
 import Login from "./components/Login";
 import Register from "./components/Register";
-import User from "./components/User";
+import UserGoals from "./components/UserGoals";
+import PublicGoals from "./components/PublicGoals";
 
 function App(props) {
   return (
@@ -12,7 +13,8 @@ function App(props) {
       <h1>30for30 Front End</h1>
       <Route path='/login' render={props => <Login {...props} />} />
       <Route path='/register' component={Register} />
-      <Route path='/user' component={User} />
+      <Route path='/user' component={UserGoals} />
+      <Route path='/feed' component={PublicGoals} />
     </div>
   );
 }
