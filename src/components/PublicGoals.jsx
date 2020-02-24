@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { axiosWithAuth } from '../axiosAuth'
 
-function PublicGoals() {
+function PublicGoals(props) {
     let [feed, setFeed] = useState([])
 
     useEffect(() => {
@@ -12,6 +12,7 @@ function PublicGoals() {
                 setFeed(res.data)
             })
             .catch(err => console.log(err))
+        console.log(props.users, 'porps users')
     }, [])
 
     return(
