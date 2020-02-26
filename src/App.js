@@ -14,11 +14,9 @@ function App(props) {
   useEffect(() => {
     axiosWithAuth()
       .get('https://thirty-before-thirty-bw.herokuapp.com/auth')
-      .then(res => {
-        setUsers(res.data)
-      })
+      .then(res => setUsers(res.data))
       .catch(err => console.log(err))
-  })
+  }, [])
 
   return (
     <div className='App'>
