@@ -9,10 +9,7 @@ function UserGoals(){
     useEffect(() => {
         axiosWithAuth()
             .get('https://thirty-before-thirty-bw.herokuapp.com/api/user-items')
-            .then(res => {
-                console.log(res)
-                setUserData(res.data)
-            })
+            .then(res => setUserData(res.data))
             .catch(err => console.log(err))
     }, [])
 
@@ -21,7 +18,7 @@ function UserGoals(){
             <h1>Personal Goals</h1>
             <Link to='/feed'>Feed</Link>
             {userData.map(card => 
-                <div>
+                <div key={card.id}>
                     <p>category {card.category_name}</p>
                     <p>{card.item_name}</p>
                     <p>{card.description}</p>

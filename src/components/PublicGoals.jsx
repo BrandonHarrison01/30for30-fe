@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { axiosWithAuth } from '../axiosAuth'
 
+import Feed from './Feed'
+
 function PublicGoals(props) {
     let [feed, setFeed] = useState([])
     let userId = {}
@@ -9,34 +11,19 @@ function PublicGoals(props) {
         axiosWithAuth()
             .get('https://thirty-before-thirty-bw.herokuapp.com/api/items')
             .then(res => {
-                console.log(res)
                 setFeed(res.data)
             })
             .catch(err => console.log(err))
     }, [])
 
-    props.users.map(user => {
-        // let id = user.id
-        userId[user.id] = user.username
-    })
+    props.users.map(user => userId[user.id] = user.username)
 
-    console.log(userId)
+    console.log('public')
 
     return(
         <div>
-            <h1>Feed</h1>
-            {feed.map(post => 
-                post.privacy === 'public' ? 
-                    <div>
-                        <p>{post.category_name}</p>
-                        <p>{post.item_name}</p>
-                        <p>{post.description}</p>
-                        <p>{userId[post.user_id]}</p>
-                        <p>{post.target_date}</p>
-                    </div>
-                :
-                    ''
-            )}
+            <h1>Public Goals</h1>
+            {feed.map(post => <Feed key={post.id} userId={userId} post={post} />)}
         </div>
     )
 }

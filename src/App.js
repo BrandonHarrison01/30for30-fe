@@ -18,9 +18,11 @@ function App(props) {
       .catch(err => console.log(err))
   }, [])
 
+  console.log('app')
+
   return (
     <div className='App'>
-      <h1>30for30 Front End</h1>
+      <h1>30 before 30 Front End</h1>
       <Route path='/login' render={props => <Login {...props} />} />
       <Route path='/register' component={Register} />
       <Route path='/user' component={UserGoals} />
