@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { axiosWithAuth } from "../axiosAuth";
 
 function NewGoalForm() {
   let [newGoal, setNewGoal] = useState({
@@ -6,8 +7,17 @@ function NewGoalForm() {
     description: "",
     category_id: 0,
     privacy: 1,
-    target_date: ''
+    target_date: ""
   });
+
+  let [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get("https://thirty-before-thirty-bw.herokuapp.com/api/categories")
+      .then(res => setCategories(res.data))
+      .catch(err => console.log(err, "err"));
+  }, []);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -21,19 +31,50 @@ function NewGoalForm() {
         <input
           type='text'
           name='item_name'
-          onChange={e => setNewGoal({ ...newGoal, [e.target.name]: e.target.value })}
+          onChange={e =>
+            setNewGoal({ ...newGoal, [e.target.name]: e.target.value })
+          }
         />
         <input
           type='text'
           name='description'
-          onChange={e => setNewGoal({ ...newGoal, [e.target.name]: e.target.value })}
+          onChange={e =>
+            setNewGoal({ ...newGoal, [e.target.name]: e.target.value })
+          }
         />
         <input
           type='text'
           name='target_date'
-          onChange={e => setNewGoal({ ...newGoal, [e.target.name]: e.target.value })}
+          onChange={e =>
+            setNewGoal({ ...newGoal, [e.target.name]: e.target.value })
+          }
         />
-        {/* <input /> */}
+        <div>
+          <input
+            type='radio'
+            name='privacy'
+            onClick={e => setNewGoal({ ...newGoal, [e.target.name]: 0 })}
+          />
+          <label>Public</label>
+          <input
+            type='radio'
+            name='privacy'
+            onClick={e => setNewGoal({ ...newGoal, [e.target.name]: 1 })}
+          />
+          <label>Private</label>
+        </div>
+        <select>
+          {categories.map(category => (
+            <option
+                name='category_id'
+              onClick={e =>
+                setNewGoal({ ...newGoal, [e.target.name]: category.id })
+              }
+            >
+              {category.category_name}
+            </option>
+          ))}
+        </select>
         <button onClick={handleSubmit}>click</button>
       </form>
     </div>
