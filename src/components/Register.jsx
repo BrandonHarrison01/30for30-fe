@@ -1,44 +1,73 @@
-import React from 'react'
+import React, { useState } from "react";
 
-import axios from 'axios'
+import axios from "axios";
 
-class Register extends React.Component {
-    state = {
-        username: '',
-        password: ''
-    }
+function Register() {
+  let [creds, setCreds] = useState({
+    username: "",
+    password: ""
+  });
 
-    handleSubmit = event => {
-        event.preventDefault();
-        console.log(this.state, 'inputs')
-        axios
-            .post('https://thirty-before-thirty-bw.herokuapp.com/auth/register', this.state)
-            .then(res => console.log(res, 'results'))
-            .catch(err => console.log(err))
-    }
-    
-    handleInputChange = event => {
-        // event.preventDefault()
-        this.setState({[event.target.name]: event.target.value})
-    }
+  let [password, setPassword] = useState({
+    password: '',
+    confirmPassword: ''
+  });
 
-    render() {
-        return(
-            <form onSubmit={this.handleSubmit}>
-            <div>
-              <label>Username</label>
-              <input type='text' name='username' value={this.state.username} onChange={this.handleInputChange} />
-            </div>
-            <div>
-              <label>Password</label>
-              <input type='password' name='password' value={this.state.password} onChange={this.handleInputChange} />
-              <label>Confirm Password</label>
-              <input type='password' name='password' value={this.state.password} onChange={this.handleInputChange} />
-            </div>
-            <button type='submit'>Sign Up</button>
-          </form>
-        )
-    }
+  const handleSubmit = event => {
+    event.preventDefault();
+    // console.log(this.state, "inputs");
+    if(password['password'] === password['confirmPassword']){
+      setCreds({ ['password']: password['password']})
+      console.log('creds', creds)
+      // axios
+      //   .post(
+      //     "https://thirty-before-thirty-bw.herokuapp.com/auth/register",
+      //     creds
+      //   )
+      //   .then(res => console.log(res, "results"))
+      //   .catch(err => console.log(err));
+    };
+  }
+
+  // handleInputChange = event => {
+  //   // event.preventDefault()
+  //   this.setState({ [event.target.name]: event.target.value });
+  // };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label>Username</label>
+        <input
+          type='text'
+          name='username'
+          onChange={e =>
+            setCreds({ ...creds, [e.target.name]: e.target.value })
+          }
+        />
+      </div>
+      <div>
+        <label>Password</label>
+        <input
+          type='password'
+          name='password'
+          onChange={e =>
+            setPassword({ ...password, ['password']: e.target.value})
+          }
+        />
+        <label>Confirm Password</label>
+        <input
+          type='password'
+          name='password'
+          onChange={e =>
+            setPassword({ ...password, ['confirmPassword']: e.target.value})
+          }
+        />
+      </div>
+      <button type='submit'>Sign Up</button>
+      {/* <button onClick={console.log(password, 'password')}>test console</button> */}
+    </form>
+  );
 }
 
-export default Register
+export default Register;

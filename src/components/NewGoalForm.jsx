@@ -21,7 +21,10 @@ function NewGoalForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(newGoal);
+    axiosWithAuth()
+        .post('https://thirty-before-thirty-bw.herokuapp.com/api/items', newGoal)
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
   };
 
   return (
