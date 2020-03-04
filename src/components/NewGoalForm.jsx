@@ -63,14 +63,18 @@ function NewGoalForm() {
           />
           <label>Private</label>
         </div>
-        <select>
+        <select
+          //   value={}
+          onChange={e =>
+            setNewGoal({
+              ...newGoal,
+              ["category_id"]: parseInt(e.target.value)
+            })
+          }
+        >
+          <option>Select</option>
           {categories.map(category => (
-            <option
-                name='category_id'
-              onClick={e =>
-                setNewGoal({ ...newGoal, [e.target.name]: category.id })
-              }
-            >
+            <option key={category.id} value={category.id}>
               {category.category_name}
             </option>
           ))}
