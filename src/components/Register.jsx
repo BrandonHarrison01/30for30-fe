@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import axios from "axios";
 
-function Register() {
+function Register(props) {
   let [creds, setCreds] = useState({
     username: "",
     password: ""
@@ -20,7 +20,10 @@ function Register() {
             "https://thirty-before-thirty-bw.herokuapp.com/auth/register",
             creds
           )
-          .then(res => console.log(res, "results"))
+          .then(res => {
+            localStorage.setItem('token', res.data.token);
+            props.history.push('/user')
+          })
           .catch(err => console.log(err));
     };
   }

@@ -25,10 +25,10 @@ function App(props) {
     <div className='App'>
       <h1>30 before 30 Front End</h1>
       <Route path='/login' render={props => <Login {...props} />} />
-      <Route path='/register' component={Register} />
+      <Route path='/register' render={props => <Register {...props} />} />
       <Route path='/user' component={UserGoals} />
       <Route path='/feed' render={props => <PublicGoals {...props} users={users} />} />
-      <NewGoalForm />
+      <Route path='/user' component={NewGoalForm} />
     </div>
   );
 }
