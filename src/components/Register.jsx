@@ -8,31 +8,22 @@ function Register() {
     password: ""
   });
 
-  let [password, setPassword] = useState({
-    password: '',
-    confirmPassword: ''
-  });
+  let [password, setPassword] = useState('');
+  let [confirmPassword, setConfirmPassword] = useState('');
 
   const handleSubmit = event => {
     event.preventDefault();
-    // console.log(this.state, "inputs");
-    if(password['password'] === password['confirmPassword']){
-      setCreds({ ['password']: password['password']})
-      console.log('creds', creds)
-      // axios
-      //   .post(
-      //     "https://thirty-before-thirty-bw.herokuapp.com/auth/register",
-      //     creds
-      //   )
-      //   .then(res => console.log(res, "results"))
-      //   .catch(err => console.log(err));
+    if(password === confirmPassword){
+      creds.password = password
+      axios
+        .post(
+            "https://thirty-before-thirty-bw.herokuapp.com/auth/register",
+            creds
+          )
+          .then(res => console.log(res, "results"))
+          .catch(err => console.log(err));
     };
   }
-
-  // handleInputChange = event => {
-  //   // event.preventDefault()
-  //   this.setState({ [event.target.name]: event.target.value });
-  // };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -52,7 +43,7 @@ function Register() {
           type='password'
           name='password'
           onChange={e =>
-            setPassword({ ...password, ['password']: e.target.value})
+            setPassword(e.target.value)
           }
         />
         <label>Confirm Password</label>
@@ -60,12 +51,11 @@ function Register() {
           type='password'
           name='password'
           onChange={e =>
-            setPassword({ ...password, ['confirmPassword']: e.target.value})
+            setConfirmPassword(e.target.value)
           }
         />
       </div>
       <button type='submit'>Sign Up</button>
-      {/* <button onClick={console.log(password, 'password')}>test console</button> */}
     </form>
   );
 }
