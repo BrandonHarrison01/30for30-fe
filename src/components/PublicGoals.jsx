@@ -18,8 +18,6 @@ function PublicGoals(props) {
 
     props.users.map(user => userId[user.id] = user.username)
 
-    console.log('public')
-
     return(
         <div>
             <h1>Public Goals</h1>

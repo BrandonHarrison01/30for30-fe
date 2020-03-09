@@ -21,8 +21,9 @@ function Register(props) {
             creds
           )
           .then(res => {
+            console.log(res, 'res')
             localStorage.setItem('token', res.data.token);
-            props.history.push('/user')
+            props.history.push('/')
           })
           .catch(err => console.log(err));
     };

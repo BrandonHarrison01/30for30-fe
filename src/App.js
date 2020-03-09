@@ -24,9 +24,9 @@ function App(props) {
   return (
     <div className='App'>
       <h1>30 before 30 Front End</h1>
-      <Route path='/login' render={props => <Login {...props} />} />
+      <Route exact path='/' render={props => <Login {...props} />} />
       <Route path='/register' render={props => <Register {...props} />} />
-      <Route path='/user' component={UserGoals} />
+      <Route path='/user' render={props => <UserGoals {...props} />} />
       <Route path='/feed' render={props => <PublicGoals {...props} users={users} />} />
       <Route path='/user' component={NewGoalForm} />
     </div>

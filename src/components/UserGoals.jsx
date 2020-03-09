@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { axiosWithAuth } from '../axiosAuth'
 
-function UserGoals(){
+function UserGoals(props){
 
     const [userData, setUserData] = useState([])
 
@@ -12,6 +12,12 @@ function UserGoals(){
             .then(res => setUserData(res.data))
             .catch(err => console.log(err))
     }, [])
+
+    const logout = () => {
+        console.log('logging out')
+        props.history.push('/')
+        localStorage.removeItem('token')
+    }
 
     return(
         <div>
@@ -25,6 +31,7 @@ function UserGoals(){
                     <p>{card.target_date}</p>
                 </div>
             )}
+            <button onClick={logout}>Logout</button>
         </div>
         )
 
