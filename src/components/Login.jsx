@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 import axios from "axios";
 
 class Login extends React.Component {
@@ -28,27 +29,31 @@ class Login extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div>
-          <label>Username</label>
-          <input
-            type='text'
-            name='username'
-            value={this.state.username}
-            onChange={this.handleInputChange}
-          />
-        </div>
-        <div>
-          <label>Password</label>
-          <input
-            type='password'
-            name='password'
-            value={this.state.password}
-            onChange={this.handleInputChange}
-          />
-        </div>
-        <button type='submit'>Sign In</button>
-      </form>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <div>
+            <label>Username</label>
+            <input
+              type='text'
+              name='username'
+              value={this.state.username}
+              onChange={this.handleInputChange}
+            />
+          </div>
+          <div>
+            <label>Password</label>
+            <input
+              type='password'
+              name='password'
+              value={this.state.password}
+              onChange={this.handleInputChange}
+            />
+          </div>
+          <button type='submit'>Sign In</button>
+        </form>
+        <p>new to 30 before 30?</p>
+        <Link to='/register' >click here</Link>
+      </div>
     );
   }
 }

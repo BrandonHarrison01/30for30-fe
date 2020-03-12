@@ -11,20 +11,24 @@ function NewGoalForm() {
   });
 
   let [categories, setCategories] = useState([]);
+  let [rerender, setRerender] = useState();
+  let count = 1
 
   useEffect(() => {
     axiosWithAuth()
-      .get("https://thirty-before-thirty-bw.herokuapp.com/api/categories")
-      .then(res => setCategories(res.data))
-      .catch(err => console.log(err, "err"));
-  }, []);
-
+    .get("https://thirty-before-thirty-bw.herokuapp.com/api/categories")
+    .then(res => setCategories(res.data))
+    .catch(err => console.log(err, "err"));
+  }, [ rerender ]);
+  
   const handleSubmit = e => {
     e.preventDefault();
     axiosWithAuth()
         .post('https://thirty-before-thirty-bw.herokuapp.com/api/items', newGoal)
         .then(res => console.log(res))
         .catch(err => console.log(err))
+    count++
+    setRerender(count)
   };
 
   return (
@@ -71,7 +75,14 @@ function NewGoalForm() {
           onChange={e =>
             setNewGoal({
               ...newGoal,
-              ["category_id"]: parseInt(e.target.value)
+
+              //fix this ↓↓↓
+
+              // ["category_id"]: parseInt(e.target.value)
+
+
+
+
             })
           }
         >
