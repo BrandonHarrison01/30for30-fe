@@ -17,7 +17,6 @@ function Goal(props){
             <p>{props.card.item_name}</p>
             <p>{props.card.description}</p>
             <p>{props.card.target_date}</p>
-            <p>{props.card.id} ← this is id</p>
             <button onClick={() => handleDelete(props.card.id)}>Delete</button>
         </div>
     )

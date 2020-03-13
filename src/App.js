@@ -7,7 +7,6 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import UserGoals from "./components/private/UserGoals";
 import PublicGoals from "./components/public/PublicGoals";
-import NewGoalForm from './components/private/NewGoalForm'
 
 function App(props) {
   let [users, setUsers] = useState([])
@@ -28,7 +27,6 @@ function App(props) {
       <Route path='/register' render={props => <Register {...props} />} />
       <Route path='/user' render={props => <UserGoals {...props} />} />
       <Route path='/feed' render={props => <PublicGoals {...props} users={users} />} />
-      <Route path='/user' component={NewGoalForm} />
     </div>
   );
 }

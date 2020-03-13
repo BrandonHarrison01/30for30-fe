@@ -1,35 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../../axiosAuth";
 
-function NewGoalForm() {
-  let [newGoal, setNewGoal] = useState({
-    item_name: "",
-    description: "",
-    category_id: 0,
-    privacy: 1,
-    target_date: ""
-  });
-
+function NewGoalForm(props) {
   let [categories, setCategories] = useState([]);
-  let [rerender, setRerender] = useState();
-  let count = 1
 
   useEffect(() => {
     axiosWithAuth()
-    .get("https://thirty-before-thirty-bw.herokuapp.com/api/categories")
-    .then(res => setCategories(res.data))
-    .catch(err => console.log(err, "err"));
-  }, [ rerender ]);
-  
-  const handleSubmit = e => {
-    e.preventDefault();
-    axiosWithAuth()
-        .post('https://thirty-before-thirty-bw.herokuapp.com/api/items', newGoal)
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
-    count++
-    setRerender(count)
-  };
+      .get("https://thirty-before-thirty-bw.herokuapp.com/api/categories")
+      .then(res => setCategories(res.data))
+      .catch(err => console.log(err, "err"));
+  }, []);
 
   return (
     <div>
@@ -39,51 +19,40 @@ function NewGoalForm() {
           type='text'
           name='item_name'
           onChange={e =>
-            setNewGoal({ ...newGoal, [e.target.name]: e.target.value })
+            props.setNewGoal({ ...props.newGoal, [e.target.name]: e.target.value })
           }
         />
         <input
           type='text'
           name='description'
           onChange={e =>
-            setNewGoal({ ...newGoal, [e.target.name]: e.target.value })
+            props.setNewGoal({ ...props.newGoal, [e.target.name]: e.target.value })
           }
         />
         <input
           type='text'
           name='target_date'
           onChange={e =>
-            setNewGoal({ ...newGoal, [e.target.name]: e.target.value })
+            props.setNewGoal({ ...props.newGoal, [e.target.name]: e.target.value })
           }
         />
         <div>
           <input
             type='radio'
             name='privacy'
-            onClick={e => setNewGoal({ ...newGoal, [e.target.name]: 0 })}
+            onClick={e => props.setNewGoal({ ...props.newGoal, [e.target.name]: 0 })}
           />
           <label>Public</label>
           <input
             type='radio'
             name='privacy'
-            onClick={e => setNewGoal({ ...newGoal, [e.target.name]: 1 })}
+            onClick={e => props.setNewGoal({ ...props.newGoal, [e.target.name]: 1 })}
           />
           <label>Private</label>
         </div>
         <select
-          //   value={}
           onChange={e =>
-            setNewGoal({
-              ...newGoal,
-
-              //fix this ↓↓↓
-
-              category_id: parseInt(e.target.value)
-
-
-
-
-            })
+            props.setNewGoal({...props.newGoal, category_id: parseInt(e.target.value)})
           }
         >
           <option>Select</option>
@@ -93,7 +62,7 @@ function NewGoalForm() {
             </option>
           ))}
         </select>
-        <button onClick={handleSubmit}>click</button>
+        <button onClick={props.submitNewGoal}>click</button>
       </form>
     </div>
   );

@@ -2,18 +2,41 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { axiosWithAuth } from '../../axiosAuth'
 
+import NewGoalForm from './NewGoalForm'
+
 import Goal from './Goal'
 
 function UserGoals(props){
+    let [newGoal, setNewGoal] = useState({
+        item_name: "",
+        description: "",
+        category_id: 0,
+        privacy: 1,
+        target_date: ""
+      });
 
-    const [userData, setUserData] = useState([])
+    let [userData, setUserData] = useState([])
+    let [toggle, setToggle] = useState(0)
 
     useEffect(() => {
         axiosWithAuth()
             .get('https://thirty-before-thirty-bw.herokuapp.com/api/user-items')
             .then(res => setUserData(res.data))
             .catch(err => console.log(err))
-    }, [])
+    }, [ toggle ])
+
+    const submitNewGoal = e => {
+        e.preventDefault();
+        axiosWithAuth()
+            .post('https://thirty-before-thirty-bw.herokuapp.com/api/items', newGoal)
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+        if(toggle){
+            setToggle(0)
+        } else {
+            setToggle(1)
+        }
+    };
 
     const logout = () => {
         console.log('logging out')
@@ -26,6 +49,7 @@ function UserGoals(props){
             <h1>Personal Goals</h1>
             <Link to='/feed'>Feed</Link>
             {userData.map(card => <Goal card={card}  key={card.id}/> )}
+            <NewGoalForm submitNewGoal={submitNewGoal} setNewGoal={setNewGoal} newGoal={newGoal} />
             <button onClick={logout}>Logout</button>
         </div>
         )
