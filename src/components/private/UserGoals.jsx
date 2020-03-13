@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { axiosWithAuth } from '../axiosAuth'
+import { axiosWithAuth } from '../../axiosAuth'
+
+import Goal from './Goal'
 
 function UserGoals(props){
 
@@ -23,14 +25,7 @@ function UserGoals(props){
         <div>
             <h1>Personal Goals</h1>
             <Link to='/feed'>Feed</Link>
-            {userData.map(card => 
-                <div key={card.id}>
-                    <p>category {card.category_name}</p>
-                    <p>{card.item_name}</p>
-                    <p>{card.description}</p>
-                    <p>{card.target_date}</p>
-                </div>
-            )}
+            {userData.map(card => <Goal card={card}  key={card.id}/> )}
             <button onClick={logout}>Logout</button>
         </div>
         )

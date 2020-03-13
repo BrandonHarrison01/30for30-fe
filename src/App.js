@@ -5,9 +5,9 @@ import "./App.css";
 
 import Login from "./components/Login";
 import Register from "./components/Register";
-import UserGoals from "./components/UserGoals";
-import PublicGoals from "./components/PublicGoals";
-import NewGoalForm from './components/NewGoalForm'
+import UserGoals from "./components/private/UserGoals";
+import PublicGoals from "./components/public/PublicGoals";
+import NewGoalForm from './components/private/NewGoalForm'
 
 function App(props) {
   let [users, setUsers] = useState([])

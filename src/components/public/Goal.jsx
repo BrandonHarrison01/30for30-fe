@@ -1,7 +1,6 @@
 import React from 'react'
 
-function Feed(props) {
-    console.log('feed')
+function Goal(props) {
     if(props.post.privacy === 'public'){
         return(
             <div>
@@ -17,4 +16,4 @@ function Feed(props) {
     }
 }
 
-export default Feed
+export default Goal

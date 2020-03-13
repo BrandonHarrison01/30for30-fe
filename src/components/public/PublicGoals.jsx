@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { axiosWithAuth } from '../axiosAuth'
+import { axiosWithAuth } from '../../axiosAuth'
 
-import Feed from './Feed'
+import Goal from './Goal'
 
 function PublicGoals(props) {
     let [feed, setFeed] = useState([])
@@ -10,9 +10,7 @@ function PublicGoals(props) {
     useEffect(() => {
         axiosWithAuth()
             .get('https://thirty-before-thirty-bw.herokuapp.com/api/items')
-            .then(res => {
-                setFeed(res.data)
-            })
+            .then(res => setFeed(res.data))
             .catch(err => console.log(err))
     }, [])
 
@@ -21,7 +19,7 @@ function PublicGoals(props) {
     return(
         <div>
             <h1>Public Goals</h1>
-            {feed.map(post => <Feed key={post.id} userId={userId} post={post} />)}
+            {feed.map(post => <Goal key={post.id} userId={userId} post={post} />)}
         </div>
     )
 }

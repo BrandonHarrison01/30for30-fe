@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { axiosWithAuth } from "../axiosAuth";
+import { axiosWithAuth } from "../../axiosAuth";
 
 function NewGoalForm() {
   let [newGoal, setNewGoal] = useState({
@@ -78,7 +78,7 @@ function NewGoalForm() {
 
               //fix this ↓↓↓
 
-              // ["category_id"]: parseInt(e.target.value)
+              category_id: parseInt(e.target.value)
 
 
 
