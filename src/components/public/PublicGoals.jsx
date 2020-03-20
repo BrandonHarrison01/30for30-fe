@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { axiosWithAuth } from '../../axiosAuth'
 
 import Goal from './Goal'
@@ -19,6 +20,7 @@ function PublicGoals(props) {
     return(
         <div>
             <h1>Public Goals</h1>
+            <Link to='/user'>Personal Goals</Link>
             {feed.map(post => <Goal key={post.id} userId={userId} post={post} />)}
         </div>
     )

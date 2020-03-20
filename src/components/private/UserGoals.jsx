@@ -32,6 +32,13 @@ function UserGoals(props){
             .then(res => console.log(res))
             .catch(err => console.log(err))
         setToggle(toggle === 0 ? 1 : 0)
+        setNewGoal({
+            item_name: "",
+            description: "",
+            category_id: 0,
+            privacy: 1,
+            target_date: ""
+          })
     };
 
     const logout = () => {
@@ -43,7 +50,7 @@ function UserGoals(props){
     return(
         <div>
             <h1>Personal Goals</h1>
-            <Link to='/feed'>Feed</Link>
+            <Link to='/feed'>Public Goals</Link>
             {userData.map(card => <Goal card={card}  key={card.id}/> )}
             <NewGoalForm submitNewGoal={submitNewGoal} setNewGoal={setNewGoal} newGoal={newGoal} />
             <button onClick={logout}>Logout</button>
