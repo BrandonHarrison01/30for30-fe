@@ -31,11 +31,7 @@ function UserGoals(props){
             .post('https://thirty-before-thirty-bw.herokuapp.com/api/items', newGoal)
             .then(res => console.log(res))
             .catch(err => console.log(err))
-        if(toggle){
-            setToggle(0)
-        } else {
-            setToggle(1)
-        }
+        setToggle(toggle === 0 ? 1 : 0)
     };
 
     const logout = () => {
@@ -52,7 +48,7 @@ function UserGoals(props){
             <NewGoalForm submitNewGoal={submitNewGoal} setNewGoal={setNewGoal} newGoal={newGoal} />
             <button onClick={logout}>Logout</button>
         </div>
-        )
+    )
 
 }
 
