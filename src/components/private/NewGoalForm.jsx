@@ -11,6 +11,11 @@ function NewGoalForm(props) {
       .catch(err => console.log(err, "err"));
   }, []);
 
+  const changeHandler = e => {
+    e.preventDefault()
+    props.setNewGoal({ ...props.newGoal, [e.target.name]: e.target.value })
+  }
+
   return (
     <div>
       <h1>New Goal</h1>
@@ -18,23 +23,17 @@ function NewGoalForm(props) {
         <input
           type='text'
           name='item_name'
-          onChange={e =>
-            props.setNewGoal({ ...props.newGoal, [e.target.name]: e.target.value })
-          }
+          onChange={changeHandler}
         />
         <input
           type='text'
           name='description'
-          onChange={e =>
-            props.setNewGoal({ ...props.newGoal, [e.target.name]: e.target.value })
-          }
+          onChange={changeHandler}
         />
         <input
           type='text'
           name='target_date'
-          onChange={e =>
-            props.setNewGoal({ ...props.newGoal, [e.target.name]: e.target.value })
-          }
+          onChange={changeHandler}
         />
         <div>
           <input
