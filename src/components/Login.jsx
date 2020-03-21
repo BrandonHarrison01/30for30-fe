@@ -1,43 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from 'react-router-dom'
 import axios from "axios";
 
-class Login extends React.Component {
-  state = {
+function Login(props) {
+  let [creds, setCreds] = useState({
     username: "",
     password: ""
-  };
+  });
 
-  handleSubmit = event => {
-    event.preventDefault();
+  const handleSubmit = e => {
+    e.preventDefault();
     axios
       .post(
         "https://thirty-before-thirty-bw.herokuapp.com/auth/login",
-        this.state
+        creds
       )
       .then(res => {
         localStorage.setItem("token", res.data.token);
-        this.props.history.push("/user");
+        props.history.push("/user");
       })
       .catch(err => console.log(err));
   };
 
-  handleInputChange = event => {
-    // event.preventDefault()
-    this.setState({ [event.target.name]: event.target.value });
-  };
-
-  render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <div>
             <label>Username</label>
             <input
               type='text'
               name='username'
-              value={this.state.username}
-              onChange={this.handleInputChange}
+              // value={this.state.username}
+              onChange={e => setCreds({...creds, [e.target.name]: e.target.value})}
             />
           </div>
           <div>
@@ -45,8 +39,8 @@ class Login extends React.Component {
             <input
               type='password'
               name='password'
-              value={this.state.password}
-              onChange={this.handleInputChange}
+              // value={this.state.password}
+              onChange={e => setCreds({...creds, [e.target.name]: e.target.value})}
             />
           </div>
           <button type='submit'>Sign In</button>
@@ -55,7 +49,6 @@ class Login extends React.Component {
         <Link to='/register' >click here</Link>
       </div>
     );
-  }
 }
 
 export default Login;
