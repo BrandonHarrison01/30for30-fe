@@ -23,6 +23,11 @@ function UserGoals(props) {
       .get("https://thirty-before-thirty-bw.herokuapp.com/api/user-items")
       .then(res => setUserData(res.data))
       .catch(err => console.log(err));
+    setNewGoal({
+      ['item_name']: '',
+      ['description']: '',
+      ['target_date']: '',
+    })
   }, [toggle]);
 
   const submitNewGoal = e => {

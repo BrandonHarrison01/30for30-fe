@@ -24,37 +24,45 @@ function NewGoalForm(props) {
           type='text'
           name='item_name'
           onChange={changeHandler}
-        />
+          value={props.newGoal.item_name}
+          />
         <input
           type='text'
           name='description'
           onChange={changeHandler}
-        />
+          value={props.newGoal.description}
+          />
         <input
           type='text'
           name='target_date'
           onChange={changeHandler}
+          value={props.newGoal.target_date}
         />
         <div>
-          <input
-            type='radio'
-            name='privacy'
-            onClick={e => props.setNewGoal({ ...props.newGoal, [e.target.name]: 0 })}
-          />
-          <label>Public</label>
-          <input
-            type='radio'
-            name='privacy'
-            onClick={e => props.setNewGoal({ ...props.newGoal, [e.target.name]: 1 })}
-          />
-          <label>Private</label>
+          <label>
+            <input
+              type='radio'
+              name='privacy'
+              onClick={e => props.setNewGoal({ ...props.newGoal, [e.target.name]: 0 })}
+              />
+            Public
+          </label>
+          <label>
+            <input
+              type='radio'
+              name='privacy'
+              onClick={e => props.setNewGoal({ ...props.newGoal, [e.target.name]: 1 })}
+              defaultChecked
+            />
+            Private
+          </label>
         </div>
         <select
           onChange={e =>
             props.setNewGoal({...props.newGoal, category_id: parseInt(e.target.value)})
           }
         >
-          <option>Select</option>
+          <option defaultValue >Select</option>
           {categories.map(category => (
             <option key={category.id} value={category.id}>
               {category.category_name}

@@ -30,7 +30,6 @@ function Login(props) {
             <input
               type='text'
               name='username'
-              // value={this.state.username}
               onChange={e => setCreds({...creds, [e.target.name]: e.target.value})}
             />
           </div>
@@ -39,7 +38,6 @@ function Login(props) {
             <input
               type='password'
               name='password'
-              // value={this.state.password}
               onChange={e => setCreds({...creds, [e.target.name]: e.target.value})}
             />
           </div>
