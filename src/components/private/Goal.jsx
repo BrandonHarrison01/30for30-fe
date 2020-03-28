@@ -1,15 +1,19 @@
 import React from 'react'
-import { axiosWithAuth } from '../../axiosAuth'
+import styled from 'styled-components'
+
+const Card = styled.div`
+    border: 1px solid black;
+`
 
 function Goal(props){
     return(
-        <div>
+        <Card>
             <p>category {props.card.category_name}</p>
             <p>{props.card.item_name}</p>
             <p>{props.card.description}</p>
             <p>{props.card.target_date}</p>
             <button onClick={() => props.handleDelete(props.card.id)}>Delete</button>
-        </div>
+        </Card>
     )
 }
 
