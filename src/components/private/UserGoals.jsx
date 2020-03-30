@@ -55,6 +55,8 @@ function UserGoals(props) {
     setToggle(toggle === 0 ? 1 : 0);
   };
 
+  console.log('testing')
+
   return (
     <div>
       <h1>Personal Goals</h1>
