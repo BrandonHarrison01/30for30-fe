@@ -24,9 +24,9 @@ function UserGoals(props) {
       .then(res => setUserData(res.data))
       .catch(err => console.log(err));
     setNewGoal({
-      ['item_name']: '',
-      ['description']: '',
-      ['target_date']: '',
+      item_name: '',
+      description: '',
+      target_date: '',
     })
   }, [toggle]);
 
