@@ -14,30 +14,35 @@ function UserGoals(props) {
     privacy: 1,
     target_date: ""
   });
-
   let [userData, setUserData] = useState([]);
   let [response, setResponse] = useState(0);
-  let [isDeleted, setIsDeleted] = useState(0)
+  let [isDeleted, setIsDeleted] = useState(0);
 
   useEffect(() => {
     axiosWithAuth()
       .get("https://thirty-before-thirty-bw.herokuapp.com/api/user-items")
-      .then(res => setUserData(res.data))
+      .then(res => {
+        setUserData(res.data)
+        console.log(res)
+      })
       .catch(err => console.log(err));
-    console.log(`response: ${response}, isDeleted: ${isDeleted}`)
-  }, [ response, isDeleted ]);
+    console.log(`response: ${response}, isDeleted: ${isDeleted}`);
+  }, [response, isDeleted]);
 
   const submitNewGoal = e => {
     e.preventDefault();
     axiosWithAuth()
       .post("https://thirty-before-thirty-bw.herokuapp.com/api/items", newGoal)
-      .then(res => setResponse(response + 1))
+      .then(res => {
+        setResponse(response + 1)
+        console.log(res)
+      })
       .catch(err => console.log(err));
     setNewGoal({
-      item_name: '',
-      description: '',
-      target_date: '',
-    })
+      item_name: "",
+      description: "",
+      target_date: ""
+    });
   };
 
   const logout = () => {
@@ -60,7 +65,7 @@ function UserGoals(props) {
       <h1>Personal Goals</h1>
       <Link to='/feed'>Public Goals</Link>
       {userData.map(card => (
-        <Goal card={card} key={card.id} handleDelete={handleDelete} />
+        !card.complete && <Goal card={card} key={card.id} handleDelete={handleDelete} />
       ))}
       <NewGoalForm
         submitNewGoal={submitNewGoal}
