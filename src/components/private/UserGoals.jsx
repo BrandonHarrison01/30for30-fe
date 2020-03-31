@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { axiosWithAuth } from "../../axiosAuth";
 
 import NewGoalForm from "./NewGoalForm";
-
-import Goal from "./Goal";
+import Incomplete from "./Incomplete";
+import Complete from "./Complete";
 
 function UserGoals(props) {
   let [newGoal, setNewGoal] = useState({
@@ -64,9 +64,8 @@ function UserGoals(props) {
     <div>
       <h1>Personal Goals</h1>
       <Link to='/feed'>Public Goals</Link>
-      {userData.map(card => (
-        !card.complete && <Goal card={card} key={card.id} handleDelete={handleDelete} />
-      ))}
+      <Incomplete userData={userData} handleDelete={handleDelete} />
+      <Complete userData={userData} handleDelete={handleDelete} />
       <NewGoalForm
         submitNewGoal={submitNewGoal}
         setNewGoal={setNewGoal}
