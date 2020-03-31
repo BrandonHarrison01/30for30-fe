@@ -18,7 +18,7 @@ function App(props) {
       .catch(err => console.log(err))
   }, [])
 
-  console.log('app')
+  // console.log('app')
 
   return (
     <div className='App'>

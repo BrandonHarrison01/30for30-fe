@@ -16,27 +16,28 @@ function UserGoals(props) {
   });
 
   let [userData, setUserData] = useState([]);
-  let [toggle, setToggle] = useState(0);
+  let [response, setResponse] = useState(0);
+  let [isDeleted, setIsDeleted] = useState(0)
 
   useEffect(() => {
     axiosWithAuth()
       .get("https://thirty-before-thirty-bw.herokuapp.com/api/user-items")
       .then(res => setUserData(res.data))
       .catch(err => console.log(err));
-    setNewGoal({
-      item_name: '',
-      description: '',
-      target_date: '',
-    })
-  }, [toggle]);
+    console.log(`response: ${response}, isDeleted: ${isDeleted}`)
+  }, [ response, isDeleted ]);
 
   const submitNewGoal = e => {
     e.preventDefault();
     axiosWithAuth()
       .post("https://thirty-before-thirty-bw.herokuapp.com/api/items", newGoal)
-      .then(res => console.log(res))
+      .then(res => setResponse(response + 1))
       .catch(err => console.log(err));
-    setToggle(toggle === 0 ? 1 : 0);
+    setNewGoal({
+      item_name: '',
+      description: '',
+      target_date: '',
+    })
   };
 
   const logout = () => {
@@ -50,12 +51,9 @@ function UserGoals(props) {
       .delete(
         `https://thirty-before-thirty-bw.herokuapp.com/api/remove-item/${id}`
       )
-      .then(res => console.log(res))
+      .then(res => setIsDeleted(isDeleted + 1))
       .catch(err => console.log(err));
-    setToggle(toggle === 0 ? 1 : 0);
   };
-
-  console.log('testing')
 
   return (
     <div>
