@@ -17,13 +17,14 @@ function UserGoals(props) {
   let [userData, setUserData] = useState([]);
   let [response, setResponse] = useState(0);
   let [isDeleted, setIsDeleted] = useState(0);
+  let [toggleNewGoalForm, setToggleNewGoalForm] = useState(0);
 
   useEffect(() => {
     axiosWithAuth()
       .get("https://thirty-before-thirty-bw.herokuapp.com/api/user-items")
       .then(res => {
-        setUserData(res.data)
-        console.log(res)
+        setUserData(res.data);
+        console.log(res);
       })
       .catch(err => console.log(err));
     console.log(`response: ${response}, isDeleted: ${isDeleted}`);
@@ -34,8 +35,8 @@ function UserGoals(props) {
     axiosWithAuth()
       .post("https://thirty-before-thirty-bw.herokuapp.com/api/items", newGoal)
       .then(res => {
-        setResponse(response + 1)
-        console.log(res)
+        setResponse(response + 1);
+        console.log(res);
       })
       .catch(err => console.log(err));
     setNewGoal({
@@ -43,6 +44,7 @@ function UserGoals(props) {
       description: "",
       target_date: ""
     });
+    setToggleNewGoalForm(0);
   };
 
   const logout = () => {
@@ -66,11 +68,16 @@ function UserGoals(props) {
       <Link to='/feed'>Public Goals</Link>
       <Incomplete userData={userData} handleDelete={handleDelete} />
       <Complete userData={userData} handleDelete={handleDelete} />
-      <NewGoalForm
-        submitNewGoal={submitNewGoal}
-        setNewGoal={setNewGoal}
-        newGoal={newGoal}
-      />
+      {toggleNewGoalForm ? (
+        <NewGoalForm
+          submitNewGoal={submitNewGoal}
+          setNewGoal={setNewGoal}
+          newGoal={newGoal}
+          setToggleNewGoalForm={setToggleNewGoalForm}
+        />
+      ) : (
+        <button onClick={() => setToggleNewGoalForm(1)}>Create New Goal</button>
+      )}
       <button onClick={logout}>Logout</button>
     </div>
   );

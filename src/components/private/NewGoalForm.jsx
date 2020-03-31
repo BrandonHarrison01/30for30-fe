@@ -32,6 +32,7 @@ function NewGoalForm(props) {
   return (
     <div>
       <h1>New Goal</h1>
+      <button onClick={() => props.setToggleNewGoalForm(0)}>Close</button>
       <form>
         <input
           type='text'
@@ -93,6 +94,7 @@ function NewGoalForm(props) {
           <div>
             <input 
               type='text'
+              placeholder='New Category'
               onChange={e => setNewCategory(e.target.value)}
             />
             <button onClick={submitNewCategory}>Add</button>
