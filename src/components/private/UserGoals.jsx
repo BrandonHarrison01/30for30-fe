@@ -54,6 +54,7 @@ function UserGoals(props) {
   };
 
   const handleDelete = id => {
+    // e.preventDefault();
     axiosWithAuth()
       .delete(
         `https://thirty-before-thirty-bw.herokuapp.com/api/remove-item/${id}`
@@ -62,12 +63,35 @@ function UserGoals(props) {
       .catch(err => console.log(err));
   };
 
+  const toggleComplete = (card, x) => {
+    console.log(card, "user goals");
+    axiosWithAuth()
+      .put(
+        `https://thirty-before-thirty-bw.herokuapp.com/api/update-item/${card.id}`,
+        {
+          item_name: card.item_name,
+          category_id: card.category_id,
+          complete: x
+        }
+      )
+      .then(res => setResponse(response + 1))
+      .catch(err => console.log(err));
+  };
+
   return (
     <div>
       <h1>Personal Goals</h1>
       <Link to='/feed'>Public Goals</Link>
-      <Incomplete userData={userData} handleDelete={handleDelete} />
-      <Complete userData={userData} handleDelete={handleDelete} />
+      <Incomplete
+        userData={userData}
+        handleDelete={handleDelete}
+        toggleComplete={toggleComplete}
+      />
+      <Complete
+        userData={userData}
+        handleDelete={handleDelete}
+        toggleComplete={toggleComplete}
+      />
       {toggleNewGoalForm ? (
         <NewGoalForm
           submitNewGoal={submitNewGoal}
