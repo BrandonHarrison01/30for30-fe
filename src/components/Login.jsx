@@ -7,6 +7,7 @@ function Login(props) {
     username: "",
     password: ""
   });
+  let [error, setError] = useState()
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -19,11 +20,12 @@ function Login(props) {
         localStorage.setItem("token", res.data.token);
         props.history.push("/user");
       })
-      .catch(err => console.log(err));
+      .catch(err => setError(err.response.data, 'status'));
   };
 
     return (
       <div>
+        { error && <p>{error.message}</p>}
         <form onSubmit={handleSubmit}>
           <div>
             <label>Username</label>

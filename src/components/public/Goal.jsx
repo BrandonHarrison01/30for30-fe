@@ -4,11 +4,11 @@ function Goal(props) {
     if(props.post.privacy === 'public'){
         return(
             <div>
-                <p>{props.post.category_name}</p>
-                <p>{props.post.item_name}</p>
-                <p>{props.post.description}</p>
-                <p>{props.userId[props.post.user_id]}</p>
-                <p>{props.post.target_date}</p>
+                <p>Category Name: {props.post.category_name}</p>
+                <p>Goal: {props.post.item_name}</p>
+                <p>Goal Description: {props.post.description}</p>
+                <p>User: {props.userId[props.post.user_id]}</p>
+                <p>Finish By: {props.post.target_date}</p>
             </div>
         )
     } else {
