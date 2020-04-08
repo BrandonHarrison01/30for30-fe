@@ -18,6 +18,7 @@ function UserGoals(props) {
   let [response, setResponse] = useState(0);
   let [isDeleted, setIsDeleted] = useState(0);
   let [toggleNewGoalForm, setToggleNewGoalForm] = useState(0);
+  let [error, setError] = useState()
 
   useEffect(() => {
     axiosWithAuth()
@@ -37,14 +38,14 @@ function UserGoals(props) {
       .then(res => {
         setResponse(response + 1);
         console.log(res);
+        setNewGoal({
+          item_name: "",
+          description: "",
+          target_date: ""
+        });
+        setToggleNewGoalForm(0);
       })
-      .catch(err => console.log(err));
-    setNewGoal({
-      item_name: "",
-      description: "",
-      target_date: ""
-    });
-    setToggleNewGoalForm(0);
+      .catch(err => setError(err.response.data));
   };
 
   const logout = () => {
@@ -98,6 +99,7 @@ function UserGoals(props) {
           setNewGoal={setNewGoal}
           newGoal={newGoal}
           setToggleNewGoalForm={setToggleNewGoalForm}
+          error={error}
         />
       ) : (
         <button onClick={() => setToggleNewGoalForm(1)}>Create New Goal</button>

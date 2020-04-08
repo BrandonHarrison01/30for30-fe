@@ -6,7 +6,6 @@ function NewGoalForm(props) {
   let [toggleInput, setToggleInput] = useState(0);
   let [newCategory, setNewCategory] = useState('')
   let [categoryLength, setCategoryLength] = useState(0)
-  // console.log(newCategory)
 
   useEffect(() => {
     axiosWithAuth()
@@ -22,6 +21,7 @@ function NewGoalForm(props) {
 
   const submitNewCategory = e => {
     e.preventDefault()
+    // if()
     axiosWithAuth()
       .post('https://thirty-before-thirty-bw.herokuapp.com/api/categories', {category_name: newCategory})
       .then(res => setCategoryLength(res.data.length))
@@ -32,6 +32,7 @@ function NewGoalForm(props) {
   return (
     <div>
       <h1>New Goal</h1>
+      { props.error && <p>Missing required field(s)</p>}
       <button onClick={() => props.setToggleNewGoalForm(0)}>Close</button>
       <form>
         <input
