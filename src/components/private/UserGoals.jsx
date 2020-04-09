@@ -23,12 +23,8 @@ function UserGoals(props) {
   useEffect(() => {
     axiosWithAuth()
       .get("https://thirty-before-thirty-bw.herokuapp.com/api/user-items")
-      .then(res => {
-        setUserData(res.data);
-        console.log(res);
-      })
+      .then(res => setUserData(res.data))
       .catch(err => console.log(err));
-    console.log(`response: ${response}, isDeleted: ${isDeleted}`);
   }, [response, isDeleted]);
 
   const submitNewGoal = e => {
@@ -49,7 +45,6 @@ function UserGoals(props) {
   };
 
   const logout = () => {
-    console.log("logging out");
     props.history.push("/");
     localStorage.removeItem("token");
   };

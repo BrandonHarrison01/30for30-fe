@@ -4,15 +4,15 @@ import { axiosWithAuth } from "../../axiosAuth";
 function NewGoalForm(props) {
   let [categories, setCategories] = useState([]);
   let [toggleInput, setToggleInput] = useState(0);
-  let [newCategory, setNewCategory] = useState('')
-  let [categoryLength, setCategoryLength] = useState(0)
+  let [newCategory, setNewCategory] = useState("");
+  let [categoryLength, setCategoryLength] = useState(0);
 
   useEffect(() => {
     axiosWithAuth()
       .get("https://thirty-before-thirty-bw.herokuapp.com/api/categories")
       .then(res => setCategories(res.data))
       .catch(err => console.log(err, "err"));
-  }, [ categoryLength ]);
+  }, [categoryLength]);
 
   const changeHandler = e => {
     e.preventDefault();
@@ -20,19 +20,20 @@ function NewGoalForm(props) {
   };
 
   const submitNewCategory = e => {
-    e.preventDefault()
-    // if()
+    e.preventDefault();
     axiosWithAuth()
-      .post('https://thirty-before-thirty-bw.herokuapp.com/api/categories', {category_name: newCategory})
+      .post("https://thirty-before-thirty-bw.herokuapp.com/api/categories", {
+        category_name: newCategory
+      })
       .then(res => setCategoryLength(res.data.length))
-      .catch(err => console.log(err))
-    setToggleInput(0)
-  }
+      .catch(err => console.log(err));
+    setToggleInput(0);
+  };
 
   return (
     <div>
       <h1>New Goal</h1>
-      { props.error && <p>Missing required field(s)</p>}
+      {props.error && <p>Missing required field(s)</p>}
       <button onClick={() => props.setToggleNewGoalForm(0)}>Close</button>
       <form>
         <input
@@ -48,7 +49,7 @@ function NewGoalForm(props) {
           value={props.newGoal.description}
         />
         <input
-          type='text'
+          type='date'
           name='target_date'
           onChange={changeHandler}
           value={props.newGoal.target_date}
@@ -93,7 +94,7 @@ function NewGoalForm(props) {
         </select>
         {toggleInput ? (
           <div>
-            <input 
+            <input
               type='text'
               placeholder='New Category'
               onChange={e => setNewCategory(e.target.value)}

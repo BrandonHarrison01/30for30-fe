@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
 import { axiosWithAuth } from './axiosAuth'
-import "./App.css";
 
 import Login from "./components/Login";
 import Register from "./components/Register";
@@ -17,8 +16,6 @@ function App(props) {
       .then(res => setUsers(res.data))
       .catch(err => console.log(err))
   }, [])
-
-  // console.log('app')
 
   return (
     <div className='App'>

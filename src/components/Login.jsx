@@ -1,6 +1,23 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom'
 import axios from "axios";
+import styled from 'styled-components'
+
+const LoginCard = styled.div`
+  border: 2px solid black;
+  padding: 100px;
+  text-align: center;
+`
+
+const UserPassContainer = styled.div`
+  margin-bottom: 20px;
+`
+
+const UserPassInput = styled.input`
+  border: .5px solid black;
+  border-radius: 20px;
+  padding: 5px;
+`
 
 function Login(props) {
   let [creds, setCreds] = useState({
@@ -24,30 +41,30 @@ function Login(props) {
   };
 
     return (
-      <div>
+      <LoginCard>
         { error && <p>{error.message}</p>}
         <form onSubmit={handleSubmit}>
-          <div>
-            <label>Username</label>
-            <input
+          <UserPassContainer>
+            <label>Username: </label>
+            <UserPassInput
               type='text'
               name='username'
               onChange={e => setCreds({...creds, [e.target.name]: e.target.value})}
             />
-          </div>
-          <div>
-            <label>Password</label>
-            <input
+          </UserPassContainer>
+          <UserPassContainer>
+            <label>Password: </label>
+            <UserPassInput
               type='password'
               name='password'
               onChange={e => setCreds({...creds, [e.target.name]: e.target.value})}
             />
-          </div>
+          </UserPassContainer>
           <button type='submit'>Sign In</button>
         </form>
         <p>new to 30 before 30?</p>
-        <Link to='/register' >click here</Link>
-      </div>
+        <Link to='/register' >register</Link>
+      </LoginCard>
     );
 }
 
