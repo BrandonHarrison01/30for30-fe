@@ -1,23 +1,6 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom'
 import axios from "axios";
-import styled from 'styled-components'
-
-const LoginCard = styled.div`
-  border: 2px solid black;
-  padding: 100px;
-  text-align: center;
-`
-
-const UserPassContainer = styled.div`
-  margin-bottom: 20px;
-`
-
-const UserPassInput = styled.input`
-  border: .5px solid black;
-  border-radius: 20px;
-  padding: 5px;
-`
 
 function Login(props) {
   let [creds, setCreds] = useState({
@@ -41,30 +24,30 @@ function Login(props) {
   };
 
     return (
-      <LoginCard>
-        { error && <p>{error.message}</p>}
+      <div className='loginContainer'>
+        { error && <p className='error'>{error.message}</p>}
         <form onSubmit={handleSubmit}>
-          <UserPassContainer>
+          <div>
             <label>Username: </label>
-            <UserPassInput
+            <input
               type='text'
               name='username'
               onChange={e => setCreds({...creds, [e.target.name]: e.target.value})}
             />
-          </UserPassContainer>
-          <UserPassContainer>
+          </div>
+          <div>
             <label>Password: </label>
-            <UserPassInput
+            <input
               type='password'
               name='password'
               onChange={e => setCreds({...creds, [e.target.name]: e.target.value})}
             />
-          </UserPassContainer>
+          </div>
           <button type='submit'>Sign In</button>
         </form>
-        <p>new to 30 before 30?</p>
+        <span>new to 30 before 30? </span>
         <Link to='/register' >register</Link>
-      </LoginCard>
+      </div>
     );
 }
 

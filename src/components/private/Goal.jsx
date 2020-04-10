@@ -1,15 +1,8 @@
 import React from "react";
-import styled from "styled-components";
-
-const Card = styled.div`
-  border: 1px solid black;
-  width: 33%;
-  margin: 0 auto;
-`;
 
 function Goal(props) {
   return (
-    <Card>
+    <div>
       <p>category {props.card.category_name}</p>
       <p>{props.card.item_name}</p>
       <p>{props.card.description}</p>
@@ -24,7 +17,7 @@ function Goal(props) {
           Toggle Complete
         </button>
       )}
-    </Card>
+    </div>
   );
 }
 

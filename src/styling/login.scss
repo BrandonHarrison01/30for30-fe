@@ -1,0 +1,25 @@
+.loginContainer {
+    border: 2px solid $light-blue;
+    width: 80%;
+    margin: 200px auto;
+    text-align: center;
+
+    .error {
+        color: red;
+        padding: 20px 0;
+    }
+    
+    form {
+        margin-bottom: 20px;
+
+        div {
+            padding-bottom: 20px;
+        }
+
+        button {
+            background-color: white;
+            padding: 5px 15px;
+            border-radius: 10px;
+        }
+    }
+}
