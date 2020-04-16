@@ -7,6 +7,8 @@ import Register from "./components/Register";
 import UserGoals from "./components/private/UserGoals";
 import PublicGoals from "./components/public/PublicGoals";
 
+import { Button } from 'reactstrap'
+
 function App(props) {
   let [users, setUsers] = useState([])
 
@@ -20,6 +22,7 @@ function App(props) {
   return (
     <div className='App'>
       <h1>30 before 30 Front End</h1>
+      <Button color='danger'>Danger!</Button>
       <Route exact path='/' render={props => <Login {...props} />} />
       <Route path='/register' render={props => <Register {...props} />} />
       <Route path='/user' render={props => <UserGoals {...props} />} />
