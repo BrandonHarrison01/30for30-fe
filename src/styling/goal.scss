@@ -1,0 +1,13 @@
+.goalContainer {
+    border: 2px solid $light-gray;
+    padding: 50px;
+    width: 45%;
+    border-radius: 5px;
+    margin: 20px 0;
+
+    .buttonContainer {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+    }
+}

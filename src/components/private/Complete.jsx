@@ -8,18 +8,21 @@ function Complete(props) {
   };
 
   return (
-    <div>
-      {props.userData.map(
-        card =>
-          card.complete && (
-            <Goal
-              key={card.id}
-              card={card}
-              handleDelete={props.handleDelete}
-              itemIncomplete={itemIncomplete}
-            />
-          )
-      )}
+    <div className='completeContainer'>
+      <h3>Complete goals</h3>
+      <div className='mappedGoals'>
+        {props.userData.map(
+          card =>
+            card.complete && (
+              <Goal
+                key={card.id}
+                card={card}
+                handleDelete={props.handleDelete}
+                itemIncomplete={itemIncomplete}
+              />
+            )
+        )}
+      </div>
     </div>
   );
 }

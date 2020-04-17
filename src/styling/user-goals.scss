@@ -1,0 +1,21 @@
+.incompleteContainer {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-bottom: 2px solid $light-gray;
+    padding: 50px 0;
+}
+
+.completeContainer {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    // border-bottom: 2px solid $light-gray;
+    padding: 50px 0;    
+}
+
+.mappedGoals {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
