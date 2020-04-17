@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom'
 import axios from "axios";
+import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap'
 
 function Login(props) {
   let [creds, setCreds] = useState({
@@ -26,25 +27,31 @@ function Login(props) {
     return (
       <div className='loginContainer'>
         { error && <p className='error'>{error.message}</p>}
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label>Username: </label>
-            <input
-              type='text'
-              name='username'
-              onChange={e => setCreds({...creds, [e.target.name]: e.target.value})}
-            />
-          </div>
-          <div>
-            <label>Password: </label>
-            <input
-              type='password'
-              name='password'
-              onChange={e => setCreds({...creds, [e.target.name]: e.target.value})}
-            />
-          </div>
-          <button type='submit'>Sign In</button>
-        </form>
+        <Form onSubmit={handleSubmit}>
+          <FormGroup row>
+            <Label for='username' sm={2}>Username: </Label>
+            <Col sm={10}>
+              <Input
+                id='username'
+                type='text'
+                name='username'
+                onChange={e => setCreds({...creds, [e.target.name]: e.target.value})}
+              />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Label for='password' sm ={2}>Password: </Label>
+            <Col sm={10}>
+              <Input
+                id='password'
+                type='password'
+                name='password'
+                onChange={e => setCreds({...creds, [e.target.name]: e.target.value})}
+              />
+            </Col>
+          </FormGroup>
+          <Button>Sign In</Button>
+        </Form>
         <span>new to 30 before 30? </span>
         <Link to='/register' >register</Link>
       </div>
