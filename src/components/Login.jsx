@@ -26,6 +26,7 @@ function Login(props) {
 
     return (
       <div className='loginContainer'>
+        <h2>Login</h2>
         { error && <p className='error'>{error.message}</p>}
         <Form onSubmit={handleSubmit}>
           <FormGroup row>
@@ -50,7 +51,7 @@ function Login(props) {
               />
             </Col>
           </FormGroup>
-          <Button>Sign In</Button>
+          <Button className='loginBtn'>Sign In!</Button>
         </Form>
         <span>new to 30 before 30? </span>
         <Link to='/register' >register</Link>

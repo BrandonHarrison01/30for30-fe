@@ -7,13 +7,16 @@
     padding: 50px;
     border-radius: 5px;
 
+    h2 {
+        margin-bottom: 50px;
+    }
+
     .error {
         color: red;
         padding: 20px 0;
     }
     
-    // form {
-    //     margin-bottom: 20px;
-    //     border: 2px solid pink;
-    // }
+    button {
+        margin: 20px 0 40px;
+    }
 }
