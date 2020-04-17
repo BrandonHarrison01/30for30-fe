@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Modal } from 'reactstrap'
 import { axiosWithAuth } from "../../axiosAuth";
 
 function NewGoalForm(props) {
@@ -31,7 +32,7 @@ function NewGoalForm(props) {
   };
 
   return (
-    <div>
+    <Modal isOpen={props.toggleNewGoalForm} returnFocusAfterClose='true'>
       <h1>New Goal</h1>
       {props.error && <p>Missing required field(s)</p>}
       <button onClick={() => props.setToggleNewGoalForm(0)}>Close</button>
@@ -108,7 +109,7 @@ function NewGoalForm(props) {
         <br />
         <button onClick={props.submitNewGoal}>Submit New Goal</button>
       </form>
-    </div>
+    </Modal>
   );
 }
 

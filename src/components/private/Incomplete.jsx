@@ -1,4 +1,6 @@
 import React from "react";
+import { Button } from 'reactstrap'
+
 import Goal from "./Goal";
 
 function Incomplete(props) {
@@ -9,6 +11,7 @@ function Incomplete(props) {
   return (
     <div className='incompleteContainer'>
       <h3>To be completed...</h3>
+      <Button color='primary' onClick={() => props.setToggleNewGoalForm(1)}>Create New Goal</Button>
       <div className='mappedGoals'>
         {props.userData.map(
           card =>

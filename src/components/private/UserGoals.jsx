@@ -78,7 +78,9 @@ function UserGoals(props) {
     <div>
       <h1>Personal Goals</h1>
       <Link to='/feed'>Public Goals</Link>
+      {/* <button onClick={() => setToggleNewGoalForm(1)}>Create New Goal</button> */}
       <Incomplete
+        setToggleNewGoalForm={setToggleNewGoalForm}
         userData={userData}
         handleDelete={handleDelete}
         toggleComplete={toggleComplete}
@@ -88,17 +90,14 @@ function UserGoals(props) {
         handleDelete={handleDelete}
         toggleComplete={toggleComplete}
       />
-      {toggleNewGoalForm ? (
-        <NewGoalForm
-          submitNewGoal={submitNewGoal}
-          setNewGoal={setNewGoal}
-          newGoal={newGoal}
-          setToggleNewGoalForm={setToggleNewGoalForm}
-          error={error}
-        />
-      ) : (
-        <button onClick={() => setToggleNewGoalForm(1)}>Create New Goal</button>
-      )}
+      <NewGoalForm
+        submitNewGoal={submitNewGoal}
+        setNewGoal={setNewGoal}
+        newGoal={newGoal}
+        toggleNewGoalForm={toggleNewGoalForm}
+        setToggleNewGoalForm={setToggleNewGoalForm}
+        error={error}
+      />
       <button onClick={logout}>Logout</button>
     </div>
   );
