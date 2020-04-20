@@ -17,7 +17,7 @@ function UserGoals(props) {
   let [userData, setUserData] = useState([]);
   let [response, setResponse] = useState(0);
   let [isDeleted, setIsDeleted] = useState(0);
-  let [toggleNewGoalForm, setToggleNewGoalForm] = useState(0);
+  let [newGoalFormModal, setNewGoalFormModal] = useState(0);
   let [error, setError] = useState()
 
   useEffect(() => {
@@ -39,7 +39,7 @@ function UserGoals(props) {
           description: "",
           target_date: ""
         });
-        setToggleNewGoalForm(0);
+        setNewGoalFormModal(0);
       })
       .catch(err => setError(err.response.data));
   };
@@ -74,13 +74,15 @@ function UserGoals(props) {
       .catch(err => console.log(err));
   };
 
+  const toggleModal = () => setNewGoalFormModal(!newGoalFormModal)
+
   return (
     <div>
       <h1>Personal Goals</h1>
       <Link to='/feed'>Public Goals</Link>
       {/* <button onClick={() => setToggleNewGoalForm(1)}>Create New Goal</button> */}
       <Incomplete
-        setToggleNewGoalForm={setToggleNewGoalForm}
+        setNewGoalFormModal={setNewGoalFormModal}
         userData={userData}
         handleDelete={handleDelete}
         toggleComplete={toggleComplete}
@@ -94,8 +96,8 @@ function UserGoals(props) {
         submitNewGoal={submitNewGoal}
         setNewGoal={setNewGoal}
         newGoal={newGoal}
-        toggleNewGoalForm={toggleNewGoalForm}
-        setToggleNewGoalForm={setToggleNewGoalForm}
+        newGoalFormModal={newGoalFormModal}
+        toggleModal={toggleModal}
         error={error}
       />
       <button onClick={logout}>Logout</button>
