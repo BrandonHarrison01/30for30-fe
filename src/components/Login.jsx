@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom'
 import axios from "axios";
-import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap'
+import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap'
 
 function Login(props) {
   let [creds, setCreds] = useState({

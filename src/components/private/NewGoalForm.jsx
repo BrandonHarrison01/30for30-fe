@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap'
+import { Modal, ModalHeader, ModalBody, ModalFooter, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap'
 import { axiosWithAuth } from "../../axiosAuth";
 
 function NewGoalForm(props) {
@@ -31,84 +31,115 @@ function NewGoalForm(props) {
     setToggleInput(0);
   };
 
+  const toggleNewCategoryInput = e => {
+    e.preventDefault()
+    setToggleInput(1)
+  }
+
   return (
     <Modal isOpen={props.newGoalFormModal} toggle={props.toggleModal}>
       <div className='modalContainer'>
         <ModalHeader toggle={props.toggleModal}>New Goal</ModalHeader>
         <ModalBody>
           {props.error && <p>Missing required field(s)</p>}
-          <form>
-            <input
-              type='text'
-              name='item_name'
-              onChange={changeHandler}
-              value={props.newGoal.item_name}
-            />
-            <input
-              type='text'
-              name='description'
-              onChange={changeHandler}
-              value={props.newGoal.description}
-            />
-            <input
-              type='date'
-              name='target_date'
-              onChange={changeHandler}
-              value={props.newGoal.target_date}
-            />
-            <div>
-              <label>
-                <input
-                  type='radio'
-                  name='privacy'
-                  onClick={e =>
-                    props.setNewGoal({ ...props.newGoal, [e.target.name]: 0 })
-                  }
-                />
-                Public
-              </label>
-              <label>
-                <input
-                  type='radio'
-                  name='privacy'
-                  onClick={e =>
-                    props.setNewGoal({ ...props.newGoal, [e.target.name]: 1 })
-                  }
-                  defaultChecked
-                />
-                Private
-              </label>
-            </div>
-            <select
-              onChange={e =>
-                props.setNewGoal({
-                  ...props.newGoal,
-                  category_id: parseInt(e.target.value)
-                })
-              }
-            >
-              <option defaultValue>Select</option>
-              {categories.map(category => (
-                <option key={category.id} value={category.id}>
-                  {category.category_name}
-                </option>
-              ))}
-            </select>
+          <Form>
+            <FormGroup>
+              <Label for='goal'>Goal: </Label>
+              <Input
+                id='goal'
+                type='text'
+                name='item_name'
+                onChange={changeHandler}
+                value={props.newGoal.item_name}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for='description'>Description: </Label>
+              <Input
+                id='description'
+                type='textarea'
+                name='description'
+                onChange={changeHandler}
+                value={props.newGoal.description}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for='target_date'>Finish by: </Label>
+              <br />
+              <input
+                id='target_date'
+                type='date'
+                name='target_date'
+                onChange={changeHandler}
+                value={props.newGoal.target_date}
+              />
+            </FormGroup>
+            <FormGroup tag='fieldset'>
+              <p>Would you like other users to see this goal?</p>
+              <FormGroup check>
+                <Label check>
+                  <Input
+                    type='radio'
+                    name='privacy'
+                    onClick={e =>
+                      props.setNewGoal({ ...props.newGoal, [e.target.name]: 0 })
+                    }
+                  />
+                  Yes
+                </Label>
+              </FormGroup>
+              <FormGroup check>
+                <Label check>
+                  <Input
+                    type='radio'
+                    name='privacy'
+                    onClick={e =>
+                      props.setNewGoal({ ...props.newGoal, [e.target.name]: 1 })
+                    }
+                    defaultChecked
+                  />
+                  No
+                </Label>
+              </FormGroup>
+            </FormGroup>
             {toggleInput ? (
               <div>
-                <input
+                <Input
                   type='text'
                   placeholder='New Category'
                   onChange={e => setNewCategory(e.target.value)}
+                  placeholder='New category...'
                 />
-                <button onClick={submitNewCategory}>Add</button>
+                <Button color='success' onClick={submitNewCategory}>Add</Button>
                 <button onClick={() => setToggleInput(0)}>X</button>
               </div>
             ) : (
-              <button onClick={() => setToggleInput(1)}>New Category</button>
+              <div>
+                <FormGroup>
+                  <Label for='category'>Select a category: </Label>
+                  <Input
+                    type='select'
+                    id='category'
+                    onChange={e =>
+                      props.setNewGoal({
+                        ...props.newGoal,
+                        category_id: parseInt(e.target.value)
+                      })
+                    }
+                  >
+                    <option defaultValue>Select</option>
+                    {categories.map(category => (
+                      <option key={category.id} value={category.id}>
+                        {category.category_name}
+                      </option>
+                    ))}
+                  </Input>
+                </FormGroup>
+                <Button color='primary' onClick={toggleNewCategoryInput}>New Category</Button>
+              </div>
             )}
             <br />
-          </form>
+          </Form>
         </ModalBody>
         <ModalFooter>
           <Button color='danger' onClick={props.toggleModal}>Cancel</Button>
