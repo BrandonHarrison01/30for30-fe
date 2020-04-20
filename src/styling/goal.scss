@@ -5,6 +5,15 @@
     border-radius: 5px;
     margin: 20px 0;
 
+    .title {
+        margin-bottom: 0px;
+    }
+
+    .description {
+        color: rgb(177, 177, 177);
+        font-size: .9rem;
+    }
+
     .buttonContainer {
         display: flex;
         justify-content: space-between;
