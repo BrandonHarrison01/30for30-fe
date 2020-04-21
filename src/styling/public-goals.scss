@@ -1,8 +1,9 @@
 .publicGoals{
-    max-width: 900px;
     margin: 0 auto;
     
     .publicFeed{
+        max-width: 900px;
+        margin: 150px auto;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;

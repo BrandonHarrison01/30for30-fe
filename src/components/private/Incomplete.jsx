@@ -10,8 +10,10 @@ function Incomplete(props) {
 
   return (
     <div className='incompleteContainer'>
-      <h3>To be completed...</h3>
-      <Button color='primary' onClick={() => props.setNewGoalFormModal(1)}>Create New Goal</Button>
+      <header>
+        <h3>To be completed...</h3>
+        <Button outline color='primary' onClick={() => props.setNewGoalFormModal(1)}>Create New Goal</Button>
+      </header>
       <div className='mappedGoals'>
         {props.userData.map(
           card =>

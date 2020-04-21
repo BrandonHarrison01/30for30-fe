@@ -1,6 +1,13 @@
 .App {
-    border: 2px solid red;
+    margin: 0 auto;
     width: 100%;
-    // display: flex;
-    // flex-direction: column;
+    // max-width: 1200px;
+
+    h1 {
+        background-color: $bucket-purple;
+        margin-bottom: 0;
+        padding: 30px;
+        text-align: center;
+        color: white;
+    }
 }

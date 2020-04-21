@@ -78,8 +78,12 @@ function UserGoals(props) {
 
   return (
     <div>
-      <h1>Personal Goals</h1>
-      <Link to='/feed'>Public Goals</Link>
+      <header className='pageHead'>
+        <div>
+          <h2>My Goals</h2>
+          <Link className='navLink' to='/feed'>See public goals feed</Link>
+        </div>
+      </header>
       {/* <button onClick={() => setToggleNewGoalForm(1)}>Create New Goal</button> */}
       <Incomplete
         setNewGoalFormModal={setNewGoalFormModal}
