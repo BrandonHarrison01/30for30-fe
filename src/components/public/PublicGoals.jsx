@@ -18,10 +18,12 @@ function PublicGoals(props) {
     props.users.map(user => userId[user.id] = user.username)
 
     return(
-        <div>
+        <div className='publicGoals'>
             <h1>Public Goals</h1>
             <Link to='/user'>Personal Goals</Link>
-            {feed.map(post => <Goal key={post.id} userId={userId} post={post} />)}
+            <div className='publicFeed'>
+                {feed.map(post => <Goal key={post.id} userId={userId} post={post} />)}
+            </div>
         </div>
     )
 }

@@ -1,0 +1,19 @@
+.publicGoals{
+    max-width: 900px;
+    margin: 0 auto;
+    
+    .publicFeed{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .publicGoalContainer{
+            border: 2px solid $light-gray;
+            border-radius: 5px;
+            width: 30%;
+            padding: 20px;
+            margin-bottom: 50px;
+        }
+    }
+}

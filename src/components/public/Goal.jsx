@@ -3,11 +3,11 @@ import React from 'react'
 function Goal(props) {
     if(props.post.privacy === 'public'){
         return(
-            <div>
-                <p>Category Name: {props.post.category_name}</p>
-                <p>Goal: {props.post.item_name}</p>
-                <p>Goal Description: {props.post.description}</p>
-                <p>User: {props.userId[props.post.user_id]}</p>
+            <div className='publicGoalContainer'>
+                <h4>{props.userId[props.post.user_id]}</h4>
+                <p><b>Category:</b> {props.post.category_name}</p>
+                <p>{props.post.item_name}</p>
+                {/* <p>Goal Description: {props.post.description}</p> */}
                 <p>Finish By: {props.post.target_date}</p>
             </div>
         )
