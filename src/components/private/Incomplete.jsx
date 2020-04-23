@@ -12,7 +12,7 @@ function Incomplete(props) {
     <div className='incompleteContainer'>
       <header>
         <h3>To be completed...</h3>
-        <Button outline color='primary' onClick={() => props.setNewGoalFormModal(1)}>Create New Goal</Button>
+        <Button outline color='primary' onClick={() => props.setNewGoalFormModal(true)}>Create New Goal</Button>
       </header>
       <div className='mappedGoals'>
         {props.userData.map(

@@ -18,7 +18,7 @@ function UserGoals(props) {
   let [userData, setUserData] = useState([]);
   let [response, setResponse] = useState(0);
   let [isDeleted, setIsDeleted] = useState(0);
-  let [newGoalFormModal, setNewGoalFormModal] = useState(0);
+  let [newGoalFormModal, setNewGoalFormModal] = useState(false);
   let [error, setError] = useState()
 
   useEffect(() => {
@@ -34,13 +34,12 @@ function UserGoals(props) {
       .post("https://thirty-before-thirty-bw.herokuapp.com/api/items", newGoal)
       .then(res => {
         setResponse(response + 1);
-        console.log(res);
         setNewGoal({
           item_name: "",
           description: "",
           target_date: ""
         });
-        setNewGoalFormModal(0);
+        setNewGoalFormModal(false);
       })
       .catch(err => setError(err.response.data));
   };
@@ -61,7 +60,6 @@ function UserGoals(props) {
   };
 
   const toggleComplete = (card, x) => {
-    console.log(card, "user goals");
     axiosWithAuth()
       .put(
         `https://thirty-before-thirty-bw.herokuapp.com/api/update-item/${card.id}`,
@@ -76,8 +74,6 @@ function UserGoals(props) {
   };
 
   const toggleModal = () => setNewGoalFormModal(!newGoalFormModal)
-
-  console.log(props.currentUser, 'user goals current')
 
   return (
     <div>

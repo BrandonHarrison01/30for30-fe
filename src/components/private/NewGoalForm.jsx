@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap'
+import { Modal, ModalHeader, ModalBody, ModalFooter, Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import { axiosWithAuth } from "../../axiosAuth";
 
 function NewGoalForm(props) {
@@ -106,7 +106,6 @@ function NewGoalForm(props) {
               <div>
                 <Input
                   type='text'
-                  placeholder='New Category'
                   onChange={e => setNewCategory(e.target.value)}
                   placeholder='New category...'
                 />

@@ -1,7 +1,7 @@
 import React from 'react'
 
 function Goal(props) {
-    if(props.post.privacy === 'public'){
+    if(props.post.privacy === 'public' && !props.post.complete){
         return(
             <div className='publicGoalContainer'>
                 <h4>{props.userId[props.post.user_id]}</h4>
