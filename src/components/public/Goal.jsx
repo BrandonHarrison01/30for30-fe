@@ -3,7 +3,7 @@ import React from 'react'
 function Goal(props) {
     if(props.post.privacy === 'public' && !props.post.complete){
         return(
-            <div className='publicGoalContainer'>
+            <div className='publicGoalContainer' onClick={() => props.toggleGoalModal(props.post)}>
                 <h4>{props.userId[props.post.user_id]}</h4>
                 <p><b>Category:</b> {props.post.category_name}</p>
                 <h5>{props.post.item_name}</h5>
