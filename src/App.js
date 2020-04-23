@@ -9,6 +9,7 @@ import PublicGoals from "./components/public/PublicGoals";
 
 function App(props) {
   let [users, setUsers] = useState([])
+  let [currentUser, setCurrentUser] = useState()
 
   useEffect(() => {
     axiosWithAuth()
@@ -20,10 +21,10 @@ function App(props) {
   return (
     <div className='App'>
       <h1>30 before 30 Front End</h1>
-      <Route exact path='/' render={props => <Login {...props} />} />
+      <Route exact path='/' render={props => <Login {...props} setCurrentUser={setCurrentUser} />} />
       <Route path='/register' render={props => <Register {...props} />} />
-      <Route path='/user' render={props => <UserGoals {...props} />} />
-      <Route path='/feed' render={props => <PublicGoals {...props} users={users} />} />
+      <Route path='/user' render={props => <UserGoals {...props} currentUser={currentUser} />} />
+      <Route path='/feed' render={props => <PublicGoals {...props} users={users} currentUser={currentUser}/>} />
     </div>
   );
 }

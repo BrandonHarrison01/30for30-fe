@@ -2,7 +2,7 @@
     background-color: $bucket-purple;
     padding-bottom: 20px;
     
-    div {
+    .banner {
         margin: 0 auto;
         width: 90%;
         display: flex;
@@ -11,8 +11,18 @@
         max-width: 1250px;
         color: white;
 
+        h2 {
+            width: 15%;
+        }
+
         .navLink {
             color: white;
+        }
+
+        div {
+            display: flex;
+            justify-content: space-between;
+            width: 15%;
         }
     }
 
@@ -23,13 +33,13 @@
     max-width: 1200px;
     margin: 0 auto;
     border-bottom: 2px solid $light-gray;
-    padding: 50px 0;
+    padding: 80px 0;
 
     header {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        margin-bottom: 50px;
+        margin-bottom: 10px;
     }
 }
 

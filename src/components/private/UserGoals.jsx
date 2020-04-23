@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { axiosWithAuth } from "../../axiosAuth";
+import { Button } from 'reactstrap'
 
 import NewGoalForm from "./NewGoalForm";
 import Incomplete from "./Incomplete";
@@ -76,12 +77,18 @@ function UserGoals(props) {
 
   const toggleModal = () => setNewGoalFormModal(!newGoalFormModal)
 
+  console.log(props.currentUser, 'user goals current')
+
   return (
     <div>
       <header className='pageHead'>
-        <div>
+        <div className='banner'>
           <h2>My Goals</h2>
           <Link className='navLink' to='/feed'>See public goals feed</Link>
+          <div>
+            <h4>{props.currentUser}</h4>
+            <Button color='secondary' onClick={logout}>Logout</Button>
+          </div>
         </div>
       </header>
       {/* <button onClick={() => setToggleNewGoalForm(1)}>Create New Goal</button> */}
@@ -104,7 +111,6 @@ function UserGoals(props) {
         toggleModal={toggleModal}
         error={error}
       />
-      <button onClick={logout}>Logout</button>
     </div>
   );
 }

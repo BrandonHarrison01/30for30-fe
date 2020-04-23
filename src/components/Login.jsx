@@ -18,7 +18,10 @@ function Login(props) {
         creds
       )
       .then(res => {
+        // console.log(res.data)
         localStorage.setItem("token", res.data.token);
+        let message = res.data.message.split(' ')
+        props.setCurrentUser(message[1])
         props.history.push("/user");
       })
       .catch(err => setError(err.response.data, 'status'));
