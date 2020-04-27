@@ -43,7 +43,7 @@ function PublicGoals(props) {
           </div>
         </div>
       </header>
-      <GoalModal goalModal={goalModal} toggleGoalModal={toggleGoalModal} postData={postData} />
+      <GoalModal goalModal={goalModal} toggleGoalModal={toggleGoalModal} postData={postData} userId={userId} />
       <div className='publicFeed'>
         {feed.map((post) => (
           <Goal key={post.id} userId={userId} post={post} toggleGoalModal={toggleGoalModal} />
