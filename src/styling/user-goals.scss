@@ -11,18 +11,39 @@
         max-width: 1250px;
         color: white;
 
+        
         h2 {
             width: 15%;
         }
-
+        
         .navLink {
             color: white;
         }
-
+        
         div {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             width: 15%;
+            
+            h4 {
+                margin-right: 10px;
+            }
+        }
+
+        @media screen and (max-width: 1000px) {
+            h2, h4, .navLink {
+                font-size: 1rem;
+            }
+
+            div {
+                flex-direction: column;
+            }
+
+            button {
+                font-size: .8rem;
+            }
+
         }
     }
 
@@ -40,6 +61,16 @@
         flex-direction: row;
         justify-content: space-between;
         margin-bottom: 10px;
+
+        @media screen and (max-width: 750px) {
+            h3 {
+                font-size: 1.4rem;
+            }
+
+            button {
+                font-size: .9rem;
+            }
+        }
     }
 }
 
