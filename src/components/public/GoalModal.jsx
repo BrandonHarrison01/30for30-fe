@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, ModalBody, ModalHeader, ModalFooter } from "reactstrap";
+import { Modal, ModalBody, ModalHeader } from "reactstrap";
 
 function GoalModal(props) {
   return (

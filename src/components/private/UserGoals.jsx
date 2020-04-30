@@ -106,6 +106,7 @@ function UserGoals(props) {
         newGoalFormModal={newGoalFormModal}
         toggleModal={toggleModal}
         error={error}
+        currentUser={props.currentUser}
       />
     </div>
   );
