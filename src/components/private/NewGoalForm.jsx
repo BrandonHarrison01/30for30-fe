@@ -9,6 +9,8 @@ import {
   FormGroup,
   Label,
   Input,
+  Col,
+  Row,
 } from "reactstrap";
 import { axiosWithAuth } from "../../axiosAuth";
 import AdminCategories from "./AdminCategories";
@@ -115,42 +117,54 @@ function NewGoalForm(props) {
               </FormGroup>
             </FormGroup>
             {toggleInput ? (
-              <div>
-                <Input
-                  type='text'
-                  onChange={(e) => setNewCategory(e.target.value)}
-                  placeholder='New category...'
-                />
-                <Button color='success' onClick={submitNewCategory}>
-                  Add
-                </Button>
-                <button onClick={() => setToggleInput(0)}>X</button>
-              </div>
+              <Row xs='3'>
+                <Col xs='8'>
+                  <Input
+                    type='text'
+                    onChange={(e) => setNewCategory(e.target.value)}
+                    placeholder='New category...'
+                  />
+                </Col>
+                <Col xs='2'>
+                  <Button color='success' onClick={submitNewCategory}>
+                    Add
+                  </Button>
+                </Col>
+                <Col xs='2'>
+                  <Button outline color='danger' onClick={() => setToggleInput(0)}>X</Button>
+                </Col>
+              </Row>
             ) : (
               <div>
                 <FormGroup>
                   <Label for='category'>Select a category: </Label>
-                  <Input
-                    type='select'
-                    id='category'
-                    onChange={(e) =>
-                      props.setNewGoal({
-                        ...props.newGoal,
-                        category_id: parseInt(e.target.value),
-                      })
-                    }
-                  >
-                    <option defaultValue>Select</option>
-                    {categories.map((category) => (
-                      <option key={category.id} value={category.id}>
-                        {category.category_name}
-                      </option>
-                    ))}
-                  </Input>
+                  <Row xs='2'>
+                    <Col xs='8'>
+                      <Input
+                        type='select'
+                        id='category'
+                        onChange={(e) =>
+                          props.setNewGoal({
+                            ...props.newGoal,
+                            category_id: parseInt(e.target.value),
+                          })
+                        }
+                      >
+                        <option defaultValue>Select</option>
+                        {categories.map((category) => (
+                          <option key={category.id} value={category.id}>
+                            {category.category_name}
+                          </option>
+                        ))}
+                      </Input>
+                    </Col>
+                    <Col xs='4'>
+                      <Button color='primary' onClick={toggleNewCategoryInput}>
+                        New
+                      </Button>
+                    </Col>
+                  </Row>
                 </FormGroup>
-                <Button color='primary' onClick={toggleNewCategoryInput}>
-                  New Category
-                </Button>
                 {props.currentUser === "brandon" && (
                   <Button
                     outline
