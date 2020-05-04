@@ -2,6 +2,7 @@
     margin: 0 auto;
     
     .publicFeed{
+        width: 90%;
         max-width: 900px;
         margin: 150px auto;
         display: flex;
@@ -15,6 +16,14 @@
             width: 30%;
             padding: 20px;
             margin-bottom: 50px;
+
+            @media screen and (max-width: 745px){
+                width: 48%
+            }
+        }
+
+        @media screen and (max-width: 745px){
+            margin: 75px auto;
         }
     }
 }

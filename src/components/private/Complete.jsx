@@ -9,7 +9,7 @@ function Complete(props) {
 
   return (
     <div className='completeContainer'>
-      <h3>Complete goals</h3>
+      <h3>Finished!</h3>
       <div className='mappedGoals'>
         {props.userData.map(
           card =>
