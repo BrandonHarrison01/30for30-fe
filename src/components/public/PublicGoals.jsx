@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "reactstrap";
+import { Button, Input } from "reactstrap";
 import { axiosWithAuth } from "../../axiosAuth";
 
 import Goal from "./Goal";
@@ -35,6 +35,14 @@ function PublicGoals(props) {
     );
   };
 
+  let searchFeed = []
+  const searchGoal = search => {
+    searchFeed = feed.filter(f => f.item_name.includes('th'))
+    console.log(searchFeed, 'search')
+  }
+  
+
+
   props.users.map((user) => (userId[user.id] = user.username));
 
   return (
@@ -53,6 +61,12 @@ function PublicGoals(props) {
           </div>
         </div>
       </header>
+      <div className='searchBar'>
+        <Input placeholder='search public goals...' />
+        <Button color='primary' onClick={() => searchGoal(9)}>
+          Search
+        </Button> 
+      </div>
       <GoalModal
         goalModal={goalModal}
         toggleGoalModal={toggleGoalModal}

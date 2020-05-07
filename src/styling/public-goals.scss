@@ -1,10 +1,15 @@
 .publicGoals{
     margin: 0 auto;
     
+    .searchBar {
+        margin: 100px auto;
+        width: 33%;
+    }
+    
     .publicFeed{
         width: 90%;
         max-width: 900px;
-        margin: 150px auto;
+        margin: 0 auto 150px;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
