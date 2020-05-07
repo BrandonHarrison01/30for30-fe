@@ -10,6 +10,9 @@ function PublicGoals(props) {
   let [feed, setFeed] = useState([]);
   let [goalModal, setGoalModal] = useState(false);
   let [postData, setPostData] = useState();
+  let [search, setSearch] = useState("");
+  let [searchFeed, setSearchFeed] = useState([])
+  let [renderSearchFeed, setRenderSearchFeed] = useState(false)
   let userId = {};
 
   useEffect(() => {
@@ -35,13 +38,12 @@ function PublicGoals(props) {
     );
   };
 
-  let searchFeed = []
-  const searchGoal = search => {
-    searchFeed = feed.filter(f => f.item_name.includes('th'))
-    console.log(searchFeed, 'search')
-  }
-  
-
+  // let searchFeed = [];
+  const searchGoal = (s) => {
+    setSearchFeed(feed.filter((f) => f.item_name.includes(s)));
+    setRenderSearchFeed(true)
+    console.log(feed, "search");
+  };
 
   props.users.map((user) => (userId[user.id] = user.username));
 
@@ -62,10 +64,13 @@ function PublicGoals(props) {
         </div>
       </header>
       <div className='searchBar'>
-        <Input placeholder='search public goals...' />
-        <Button color='primary' onClick={() => searchGoal(9)}>
+        <Input placeholder='search public goals...' onChange={e => setSearch(e.target.value)} />
+        <Button color='primary' onClick={() => searchGoal(search)}>
           Search
-        </Button> 
+        </Button>
+        <Button color='danger' onClick={() => setRenderSearchFeed(false)}>
+          Clear
+        </Button>
       </div>
       <GoalModal
         goalModal={goalModal}
@@ -74,15 +79,27 @@ function PublicGoals(props) {
         userId={userId}
       />
       <div className='publicFeed'>
-        {feed.map((post) => (
-          <Goal
-            key={post.id}
-            userId={userId}
-            post={post}
-            toggleGoalModal={toggleGoalModal}
-            deleteGoal={deleteGoal}
-            currentUser={props.currentUser}
-          />
+        { renderSearchFeed ?
+          searchFeed.map((post) => (
+            <Goal
+              key={post.id}
+              userId={userId}
+              post={post}
+              toggleGoalModal={toggleGoalModal}
+              deleteGoal={deleteGoal}
+              currentUser={props.currentUser}
+            />
+          ))
+          :
+          feed.map((post) => (
+            <Goal
+              key={post.id}
+              userId={userId}
+              post={post}
+              toggleGoalModal={toggleGoalModal}
+              deleteGoal={deleteGoal}
+              currentUser={props.currentUser}
+            />
         ))}
       </div>
     </div>
