@@ -14,7 +14,7 @@ function Login(props) {
     e.preventDefault();
     axios
       .post(
-        "https://thirty-before-thirty-bw.herokuapp.com/auth/login",
+        "https://bucket-list-tracker.herokuapp.com/auth/login",
         creds
       )
       .then(res => {

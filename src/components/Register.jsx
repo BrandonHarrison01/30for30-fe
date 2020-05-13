@@ -21,7 +21,7 @@ function Register(props) {
       creds.password = password
       axios
         .post(
-            "https://thirty-before-thirty-bw.herokuapp.com/auth/register",
+            "https://bucket-list-tracker.herokuapp.com/auth/register",
             creds
           )
           .then(res => {

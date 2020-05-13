@@ -17,7 +17,7 @@ function PublicGoals(props) {
 
   useEffect(() => {
     axiosWithAuth()
-      .get("https://thirty-before-thirty-bw.herokuapp.com/api/items")
+      .get("https://bucket-list-tracker.herokuapp.com/api/items")
       .then((res) => setFeed(res.data))
       .catch((err) => console.log(err));
   }, []);
@@ -34,7 +34,7 @@ function PublicGoals(props) {
 
   const deleteGoal = (id) => {
     axiosWithAuth().delete(
-      `https://thirty-before-thirty-bw.herokuapp.com/api/remove-item/${id}`
+      `https://bucket-list-tracker.herokuapp.com/api/remove-item/${id}`
     );
   };
 

@@ -5,7 +5,7 @@ import { axiosWithAuth } from '../../axiosAuth'
 function AdminCategories(props) {
     const deleteCat = (id) => {
         axiosWithAuth()
-            .delete(`https://thirty-before-thirty-bw.herokuapp.com/api/categories/${id}`)
+            .delete(`https://bucket-list-tracker.herokuapp.com/api/categories/${id}`)
             .then(res => props.setDeleteCatModal(false))
             .catch(err => console.log(err))
     }

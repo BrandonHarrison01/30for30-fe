@@ -24,7 +24,7 @@ function NewGoalForm(props) {
 
   useEffect(() => {
     axiosWithAuth()
-      .get("https://thirty-before-thirty-bw.herokuapp.com/api/categories")
+      .get("https://bucket-list-tracker.herokuapp.com/api/categories")
       .then((res) => setCategories(res.data))
       .catch((err) => console.log(err, "err"));
   }, [categoryLength]);
@@ -37,7 +37,7 @@ function NewGoalForm(props) {
   const submitNewCategory = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .post("https://thirty-before-thirty-bw.herokuapp.com/api/categories", {
+      .post("https://bucket-list-tracker.herokuapp.com/api/categories", {
         category_name: newCategory,
       })
       .then((res) => setCategoryLength(res.data.length))
