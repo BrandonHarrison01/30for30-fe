@@ -55,7 +55,7 @@ function Login(props) {
           </FormGroup>
           <Button className='loginBtn'>Sign In!</Button>
         </Form>
-        <span>new to 30 before 30? </span>
+        <span>new to Bucket List Tracker? </span>
         <Link to='/register' >register</Link>
       </div>
     );
