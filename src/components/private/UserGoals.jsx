@@ -80,7 +80,7 @@ function UserGoals(props) {
       <header className='pageHead'>
         <div className='banner'>
           <h2>My Goals</h2>
-          <Link className='navLink' to='/feed'>See public goals feed</Link>
+          <Link className='navLink' to='/feed'>public goals</Link>
           <div>
             <h4>{props.currentUser}</h4>
             <Button color='secondary' onClick={logout}>Logout</Button>

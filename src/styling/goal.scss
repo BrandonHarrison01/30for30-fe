@@ -25,5 +25,12 @@
 @media screen and (max-width: 930px) {
     .goalContainer {
         width: 90%;
+    }   
+}
+
+@media screen and (max-width: 450px) {
+    .goalContainer {
+        width: 100%;
+        padding: 30px;
     }    
 }

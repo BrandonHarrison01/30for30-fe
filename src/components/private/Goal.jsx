@@ -22,11 +22,11 @@ function Goal(props) {
         <Button outline color='danger' onClick={() => setDeleteModal(true)}>Delete</Button >
         {props.card.complete ? (
           <Button outline color='warning' onClick={() => props.itemIncomplete(props.card)}>
-            Toggle Incomplete
+            Unachieve
           </Button>
         ) : (
           <Button outline color='success' onClick={() => props.itemComplete(props.card)}>
-            Goal Complete
+            Achieved!
           </Button>
         )}
       </div>
