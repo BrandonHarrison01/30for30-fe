@@ -65,12 +65,14 @@ function PublicGoals(props) {
       </header>
       <div className='searchBar'>
         <Input placeholder='search public goals...' onChange={e => setSearch(e.target.value)} />
-        <Button color='primary' onClick={() => searchGoal(search)}>
-          Search
-        </Button>
-        <Button color='danger' onClick={() => setRenderSearchFeed(false)}>
-          Clear
-        </Button>
+        <div className='searchBtns'>
+          <Button color='primary' onClick={() => searchGoal(search)}>
+            Search
+          </Button>
+          <Button color='danger' onClick={() => setRenderSearchFeed(false)}>
+            Clear
+          </Button>
+        </div>
       </div>
       <GoalModal
         goalModal={goalModal}
