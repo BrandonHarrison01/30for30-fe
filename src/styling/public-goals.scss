@@ -11,12 +11,6 @@
             display: flex;
         }
     }
-
-    .publicModal{
-        p{
-            margin-bottom: 1rem;
-        }
-    }
     
     .publicFeed{
         width: 90%;
@@ -69,5 +63,15 @@
                 width: 80%
             }
         }
+    }
+}
+
+.publicModal{
+    h3{
+        font-size: 1.6rem;
+    }
+
+    p{
+        margin-bottom: 1rem;
     }
 }
