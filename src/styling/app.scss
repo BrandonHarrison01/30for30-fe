@@ -9,5 +9,25 @@
         padding: 30px;
         text-align: center;
         color: white;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;
+    }
+    
+    b {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;    
+    }
+
+    p, h4, h5 {
+        margin-bottom: 1rem;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    h4 {
+        font-size: 1.7rem;
+    }
+
+    h5 {
+        font-size: 1.5rem;
     }
 }
