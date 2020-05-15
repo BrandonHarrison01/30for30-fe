@@ -8,7 +8,7 @@ function GoalModal(props) {
       toggle={() => props.toggleGoalModal(props.postData)}
     >
       {props.goalModal && (
-        <div>
+        <div className='publicModal'>
           <ModalHeader toggle={() => props.toggleGoalModal(props.postData)} >
             <h3>{props.userId[props.postData.user_id]}</h3>
           </ModalHeader>
