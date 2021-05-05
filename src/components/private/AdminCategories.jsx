@@ -2,10 +2,12 @@ import React from 'react'
 import { Modal } from 'reactstrap'
 import { axiosWithAuth } from '../../axiosAuth'
 
+import { herokuUrl } from '../../App'
+
 function AdminCategories(props) {
     const deleteCat = (id) => {
         axiosWithAuth()
-            .delete(`https://bucket-list-tracker.herokuapp.com/api/categories/${id}`)
+            .delete(`${herokuUrl}/api/categories/${id}`)
             .then(res => props.setDeleteCatModal(false))
             .catch(err => console.log(err))
     }

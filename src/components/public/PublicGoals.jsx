@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { Button, Input } from "reactstrap";
 import { axiosWithAuth } from "../../axiosAuth";
 
+import { herokuUrl } from "../../App"
+
 import Goal from "./Goal";
 import GoalModal from "./GoalModal";
 
@@ -17,7 +19,7 @@ function PublicGoals(props) {
 
   useEffect(() => {
     axiosWithAuth()
-      .get("https://bucket-list-tracker.herokuapp.com/api/items")
+      .get(`${herokuUrl}/api/items`)
       .then((res) => setFeed(res.data))
       .catch((err) => console.log(err));
   }, []);
@@ -34,7 +36,7 @@ function PublicGoals(props) {
 
   const deleteGoal = (id) => {
     axiosWithAuth().delete(
-      `https://bucket-list-tracker.herokuapp.com/api/remove-item/${id}`
+      `${herokuUrl}/api/remove-item/${id}`
     );
   };
 

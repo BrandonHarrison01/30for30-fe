@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { axiosWithAuth } from "../../axiosAuth";
 import { Button } from 'reactstrap'
 
+import { herokuUrl } from '../../App'
+
 import NewGoalForm from "./NewGoalForm";
 import Incomplete from "./Incomplete";
 import Complete from "./Complete";
@@ -23,7 +25,7 @@ function UserGoals(props) {
 
   useEffect(() => {
     axiosWithAuth()
-      .get("https://bucket-list-tracker.herokuapp.com/api/user-items")
+      .get(`${herokuUrl}/api/user-items`)
       .then(res => setUserData(res.data))
       .catch(err => console.log(err));
   }, [response, isDeleted]);
@@ -31,7 +33,7 @@ function UserGoals(props) {
   const submitNewGoal = e => {
     e.preventDefault();
     axiosWithAuth()
-      .post("https://bucket-list-tracker.herokuapp.com/api/items", newGoal)
+      .post(`${herokuUrl}/api/items`, newGoal)
       .then(res => {
         setResponse(response + 1);
         setNewGoal({
@@ -53,7 +55,7 @@ function UserGoals(props) {
     // e.preventDefault();
     axiosWithAuth()
       .delete(
-        `https://bucket-list-tracker.herokuapp.com/api/remove-item/${id}`
+        `${herokuUrl}/api/remove-item/${id}`
       )
       .then(res => setIsDeleted(isDeleted + 1))
       .catch(err => console.log(err));
@@ -62,7 +64,7 @@ function UserGoals(props) {
   const toggleComplete = (card, x) => {
     axiosWithAuth()
       .put(
-        `https://bucket-list-tracker.herokuapp.com/api/update-item/${card.id}`,
+        `${herokuUrl}/api/update-item/${card.id}`,
         {
           item_name: card.item_name,
           category_id: card.category_id,

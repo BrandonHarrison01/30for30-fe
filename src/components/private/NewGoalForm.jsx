@@ -14,6 +14,7 @@ import {
 } from "reactstrap";
 import { axiosWithAuth } from "../../axiosAuth";
 import AdminCategories from "./AdminCategories";
+import { herokuUrl } from '../../App'
 
 function NewGoalForm(props) {
   let [categories, setCategories] = useState([]);
@@ -24,7 +25,7 @@ function NewGoalForm(props) {
 
   useEffect(() => {
     axiosWithAuth()
-      .get("https://bucket-list-tracker.herokuapp.com/api/categories")
+      .get(`${herokuUrl}/api/categories`)
       .then((res) => setCategories(res.data))
       .catch((err) => console.log(err, "err"));
   }, [categoryLength]);
@@ -37,7 +38,7 @@ function NewGoalForm(props) {
   const submitNewCategory = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .post("https://bucket-list-tracker.herokuapp.com/api/categories", {
+      .post(`${herokuUrl}/api/categories`, {
         category_name: newCategory,
       })
       .then((res) => setCategoryLength(res.data.length))

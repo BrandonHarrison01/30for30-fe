@@ -7,13 +7,15 @@ import Register from "./components/Register";
 import UserGoals from "./components/private/UserGoals";
 import PublicGoals from "./components/public/PublicGoals";
 
+export const herokuUrl = "https://be-bucket-list.herokuapp.com"
+
 function App(props) {
   let [users, setUsers] = useState([])
   let [currentUser, setCurrentUser] = useState()
 
   useEffect(() => {
     axiosWithAuth()
-      .get('https://bucket-list-tracker.herokuapp.com/auth')
+      .get(`${herokuUrl}/auth`)
       .then(res => setUsers(res.data))
       .catch(err => console.log(err))
   }, [])

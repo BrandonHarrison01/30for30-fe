@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import axios from "axios";
 import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap'
 
+import { herokuUrl } from '../App'
+
 function Login(props) {
   let [creds, setCreds] = useState({
     username: "",
@@ -14,7 +16,7 @@ function Login(props) {
     e.preventDefault();
     axios
       .post(
-        "https://bucket-list-tracker.herokuapp.com/auth/login",
+        `${herokuUrl}/auth/login`,
         creds
       )
       .then(res => {
